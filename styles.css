@@ -216,6 +216,7 @@ main {
 }
 
 .footer h3 {
+  color: white;
   display: inline-block;
   margin-bottom: 15px;
   font-size: 1.2rem;
@@ -224,9 +225,9 @@ main {
 .footer a {
   color: white;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   display: block;
-  width: fit-content;
+  /* width: fit-content; */
   margin-bottom: 8px;
   transition: color 0.3s ease;
 }
@@ -345,7 +346,7 @@ p {
   }
 
   h3 {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
 
   p {
@@ -353,7 +354,7 @@ p {
   }
 
   section {
-    padding: 20px;
+    padding: 10px;
   }
 
   #about,
