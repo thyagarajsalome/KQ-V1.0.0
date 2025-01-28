@@ -1,0 +1,284 @@
+const quizData = [
+  {
+    question: "ಯಾವ ಆಹಾರವು 'ದೇವರ ಆಹಾರ' ಎಂದು ಕರೆಯಲ್ಪಡುತ್ತದೆ?",
+    options: ["ಅಕ್ಕಿ", "ಗೋಧಿ", "ಜೋಳ", "ರಾಗಿ"],
+    correctAnswer: "ಅಕ್ಕಿ",
+  },
+  {
+    question: "ವಿಶ್ವದ ಅತಿ ಹಳೆಯ ಮಸಾಲೆ ಯಾವುದು?",
+    options: ["ಮೆಣಸು", "ಇಂಗು", "ಹಳದಿ", "ದಾಲ್ಚಿನ್ನಿ"],
+    correctAnswer: "ಇಂಗು",
+  },
+  {
+    question: "ಯಾವ ಹಣ್ಣು 'ರಾಜರ ಹಣ್ಣು' ಎಂದು ಕರೆಯಲ್ಪಡುತ್ತದೆ?",
+    options: ["ಸೇಬು", "ದ್ರಾಕ್ಷಿ", "ಚೆರ್ರಿ", "ಮಾವು"],
+    correctAnswer: "ಮಾವು",
+  },
+  {
+    question: "ಪೋಷಕಾಂಶಗಳ ಆಗರ ಎಂದು ಕರೆಯಲ್ಪಡುವ ಆಹಾರ ಯಾವುದು?",
+    options: ["ಬಾಳೆಹಣ್ಣು", "ಬೇಳೆಕಾಳು", "ತರಕಾರಿಗಳು", "ಹಣ್ಣುಗಳು"],
+    correctAnswer: "ಬೇಳೆಕಾಳು",
+  },
+  {
+    question: "ವಿಟಮಿನ್ ಸಿ ಯ ಅತ್ಯುತ್ತಮ ಮೂಲ ಯಾವುದು?",
+    options: ["ಆಪಲ್", "ಆರೆಂಜ್", "ಬಾಳೆಹಣ್ಣು", "ಗ್ರೇಪ್ಸ್"],
+    correctAnswer: "ಆರೆಂಜ್",
+  },
+  {
+    question: "ಯಾವ ಆಹಾರವು ಕಬ್ಬಿಣದ ಅತ್ಯುತ್ತಮ ಮೂಲವಾಗಿದೆ?",
+    options: ["ಪಾಲಕ್", "ಬಾಳೆಹಣ್ಣು", "ಆಪಲ್", "ಗ್ರೇಪ್ಸ್"],
+    correctAnswer: "ಪಾಲಕ್",
+  },
+  {
+    question: "ಯಾವ ದೇಶವು ಕಾಫಿಯನ್ನು ಆವಿಷ್ಕರಿಸಿತು?",
+    options: ["ಭಾರತ", "ಇಟಲಿ", "ಇಥಿಯೋಪಿಯಾ", "ಬ್ರೆಜಿಲ್"],
+    correctAnswer: "ಇಥಿಯೋಪಿಯಾ",
+  },
+  {
+    question: "ಯಾವ ಆಹಾರವು ಕ್ಯಾಲ್ಸಿಯಂನ ಅತ್ಯುತ್ತಮ ಮೂಲವಾಗಿದೆ?",
+    options: ["ಮೀನು", "ಮೊಟ್ಟೆ", "ಹಾಲು", "ಚೀಸ್"],
+    correctAnswer: "ಹಾಲು",
+  },
+  {
+    question: "ಯಾವ ದೇಶವು ಪಿಜ್ಜಾವನ್ನು ಆವಿಷ್ಕರಿಸಿತು?",
+    options: ["ಇಟಲಿ", "ಅಮೆರಿಕಾ", "ಗ್ರೀಸ್", "ಸ್ಪೇನ್"],
+    correctAnswer: "ಇಟಲಿ",
+  },
+  {
+    question: "ಯಾವ ಆಹಾರವು ಪ್ರೋಟೀನ್‌ನ ಅತ್ಯುತ್ತಮ ಮೂಲವಾಗಿದೆ?",
+    options: ["ಅಕ್ಕಿ", "ಗೋಧಿ", "ಮಾಂಸ", "ಹಣ್ಣುಗಳು"],
+    correctAnswer: "ಮಾಂಸ",
+  },
+  {
+    question: "ಯಾವ ಆಹಾರವು ಒಮೆಗಾ-3 ಕೊಬ್ಬಿನಾಮ್ಲಗಳಿಗೆ ಹೆಸರುವಾಸಿಯಾಗಿದೆ?",
+    options: ["ಸೋಯಾಬೀನ್", "ಬಾದಾಮಿ", "ಮೀನು", "ಕೋಳಿ ಮಾಂಸ"],
+    correctAnswer: "ಮೀನು",
+  },
+  {
+    question: "ಯಾವ ಹಣ್ಣು ವಿಟಮಿನ್ ಎ ಯ ಅತ್ಯುತ್ತಮ ಮೂಲವಾಗಿದೆ?",
+    options: ["ಸೇಬು", "ದ್ರಾಕ್ಷಿ", "ಬಾಳೆಹಣ್ಣು", "ಕಲ್ಲಂಗಡಿ"],
+    correctAnswer: "ಕಲ್ಲಂಗಡಿ",
+  },
+  {
+    question: "ಯಾವ ಆಹಾರವು ಫೈಬರ್‌ನ ಅತ್ಯುತ್ತಮ ಮೂಲವಾಗಿದೆ?",
+    options: ["ಅಕ್ಕಿ", "ಗೋಧಿ", "ಮಾಂಸ", "ಹಣ್ಣುಗಳು"],
+    correctAnswer: "ಗೋಧಿ",
+  },
+  {
+    question: "ಯಾವ ಆಹಾರವನ್ನು 'ಸೂಪರ್ ಫುಡ್' ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ?",
+    options: ["ಬಾಳೆಹಣ್ಣು", "ಬೆರಿಹಣ್ಣು", "ದ್ರಾಕ್ಷಿ", "ಸೇಬು"],
+    correctAnswer: "ಬೆರಿಹಣ್ಣು",
+  },
+  {
+    question: "ಯಾವ ದೇಶವು ಮಸಾಲಾ ದೋಸೆಯ ತವಿಯನ್ನು ಕಂಡುಹಿಡಿದಿತು?",
+    options: ["ಭಾರತ", "ಶ್ರೀಲಂಕಾ", "ಇಂಡೋನೇಷ್ಯಾ", "ಥೈಲ್ಯಾಂಡ್"],
+    correctAnswer: "ಭಾರತ",
+  },
+];
+
+//
+let currentQuestion = 0;
+let score = 0;
+
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const resultEl = document.getElementById("result");
+const restartBtn = document.getElementById("restart-btn");
+
+function loadQuestion() {
+  const currentQuizData = quizData[currentQuestion];
+  questionEl.innerText = currentQuizData.question;
+
+  optionsEl.innerHTML = "";
+  currentQuizData.options.forEach((option) => {
+    const button = document.createElement("div");
+    button.innerText = option;
+    button.classList.add("option");
+    button.addEventListener("click", selectAnswer);
+    optionsEl.appendChild(button);
+  });
+}
+
+function selectAnswer(e) {
+  const selectedBtn = e.target;
+  const correct = quizData[currentQuestion].correctAnswer;
+
+  Array.from(optionsEl.children).forEach((button) => {
+    button.disabled = true;
+    if (button.innerText === correct) {
+      button.classList.add("correct");
+    }
+    if (button === selectedBtn && selectedBtn.innerText !== correct) {
+      button.classList.add("incorrect");
+    }
+  });
+
+  if (selectedBtn.innerText === correct) {
+    score++;
+  }
+
+  setTimeout(() => {
+    currentQuestion++;
+    if (currentQuestion < quizData.length) {
+      loadQuestion();
+    } else {
+      showResults();
+    }
+  }, 1000);
+}
+
+function showResults() {
+  questionEl.style.display = "none";
+  optionsEl.style.display = "none";
+  resultEl.innerHTML = `ನೀವು ${quizData.length} ರಲ್ಲಿ ${score} ಅಂಕಗಳನ್ನು ಗಳಿಸಿದ್ದೀರಿ!`;
+  restartBtn.style.display = "block";
+  restartBtn.addEventListener("click", restartQuiz);
+}
+
+function restartQuiz() {
+  currentQuestion = 0;
+  score = 0;
+  questionEl.style.display = "block";
+  optionsEl.style.display = "grid";
+  resultEl.innerHTML = "";
+  restartBtn.style.display = "none";
+  loadQuestion();
+}
+
+// Question numbers
+function loadQuestion() {
+  const currentQuizData = quizData[currentQuestion];
+  // Add question number before the question text
+  questionEl.innerText = `${currentQuestion + 1}. ${currentQuizData.question}`;
+
+  optionsEl.innerHTML = "";
+  currentQuizData.options.forEach((option) => {
+    const button = document.createElement("div");
+    button.innerText = option;
+    button.classList.add("option");
+    button.addEventListener("click", selectAnswer);
+    optionsEl.appendChild(button);
+  });
+}
+
+// Start the quiz
+loadQuestion();
+// celebration code
+function showResults() {
+  questionEl.style.display = "none";
+  optionsEl.style.display = "none";
+
+  // Celebration logic
+  if (score >= 10) {
+    // High score celebration
+    resultEl.innerHTML = `
+      <div class="celebration">
+        <h2>🎉 ಅಭಿನಂದನೆಗಳು! 🏆</h2>
+        <p>ನೀವು ${quizData.length} ರಲ್ಲಿ ${score} ಅಂಕಗಳನ್ನು ಗಳಿಸಿದ್ದೀರಿ!</p>
+        <div class="confetti-container">
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+        </div>
+      </div>
+    `;
+    // Add animation styles
+    const styleEl = document.createElement("style");
+    styleEl.innerHTML = `
+      .celebration {
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding: 20px;
+      }
+      .confetti-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .confetti {
+        width: 15px;
+        height: 15px;
+        background-color: #f2d74e;
+        position: absolute;
+        left: 50%;
+        animation: confetti 5s ease-in-out -2s infinite;
+        transform-origin: left top;
+      }
+      .confetti:nth-child(2) {
+        background-color: #95c3de;
+        left: 30%;
+        animation-delay: -4s;
+      }
+      .confetti:nth-child(3) {
+        background-color: #ff9a91;
+        left: 70%;
+        animation-delay: -1s;
+      }
+      .confetti:nth-child(4) {
+        background-color: #f2d74e;
+        left: 20%;
+        animation-delay: -2s;
+      }
+      .confetti:nth-child(5) {
+        background-color: #95c3de;
+        left: 80%;
+        animation-delay: -3s;
+      }
+      .confetti:nth-child(6) {
+        background-color: #ff9a91;
+        left: 40%;
+        animation-delay: -4s;
+      }
+      .confetti:nth-child(7) {
+        background-color: #f2d74e;
+        left: 60%;
+        animation-delay: -1s;
+      }
+      .confetti:nth-child(8) {
+        background-color: #95c3de;
+        left: 10%;
+        animation-delay: -2s;
+      }
+      .confetti:nth-child(9) {
+        background-color: #ff9a91;
+        left: 90%;
+        animation-delay: -3s;
+      }
+      .confetti:nth-child(10) {
+        background-color: #f2d74e;
+        left: 50%;
+        animation-delay: -4s;
+      }
+      @keyframes confetti {
+        0% { transform: rotateZ(15deg) rotateY(0deg) translate(0,0); }
+        25% { transform: rotateZ(5deg) rotateY(360deg) translate(-5vw,20vh); }
+        50% { transform: rotateZ(15deg) rotateY(720deg) translate(5vw,60vh); }
+        75% { transform: rotateZ(5deg) rotateY(1080deg) translate(-10vw,80vh); }
+        100% { transform: rotateZ(15deg) rotateY(1440deg) translate(10vw,110vh); }
+      }
+    `;
+    document.head.appendChild(styleEl);
+  } else {
+    // Low score sad result
+    resultEl.innerHTML = `
+      <div class="low-score">
+        <h2>😔 ಇನ್ನೂ ಪ್ರಯತ್ನಿಸಿ</h2>
+        <p>ನೀವು ${quizData.length} ರಲ್ಲಿ ${score} ಅಂಕಗಳನ್ನು ಗಳಿಸಿದ್ದೀರಿ</p>
+      </div>
+    `;
+  }
+
+  restartBtn.style.display = "block";
+  restartBtn.addEventListener("click", restartQuiz);
+}

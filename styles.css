@@ -1,0 +1,385 @@
+:root {
+  --primary-color: #1a5f7a;
+  --secondary-color: #159895;
+  --background-color: #f0f4f8;
+  --text-color: #2c3e50;
+  --accent-color: #57c5b6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Serif Kannada";
+  background-color: var(--background-color);
+  line-height: 1.6;
+  color: var(--text-color);
+}
+p {
+  text-align: start;
+}
+
+#about,
+h1 {
+  text-align: center;
+  margin-top: 50px;
+}
+.navbar {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo i {
+  color: var(--accent-color);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 250px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: var(--text-color);
+  padding: 12px 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--background-color);
+}
+
+main {
+  margin-top: 90px;
+  padding: 20px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quiz-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.quiz-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  text-align: center;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.quiz-card .btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.quiz-card .btn:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.05);
+}
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+      135deg,
+      var(--primary-color),
+      var(--secondary-color)
+    );
+    padding: 20px;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+}
+/* Footer  */
+
+/* Footer Styles */
+.footer {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 40px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-column {
+  flex: 1 1 calc(33.33% - 20px);
+  min-width: 200px;
+}
+
+.footer h3 {
+  display: inline-block;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: block;
+  width: fit-content;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: darkorange;
+}
+
+.footer .social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.footer .social-icons a {
+  color: white;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer .social-icons a:hover {
+  transform: scale(1.2);
+  color: var(--accent-color);
+}
+
+.footer .copy {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.footer-column i {
+  padding-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-column {
+    flex: 1 1 100%;
+    max-width: 400px;
+  }
+}
+
+/* about- faq- policy section start */
+/* Global Styles */
+
+section {
+  padding: 40px;
+  text-align: center;
+}
+
+h2,
+h3 {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--text-color);
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+/* About Section Styles */
+#about {
+  background-color: #fff;
+  border-radius: 10px;
+
+  margin: 20px auto;
+}
+
+/* FAQ Section Styles */
+#faq .faq-item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+#faq .faq-item p {
+  margin-top: 10px;
+}
+
+/* Privacy Policy Section Styles */
+#privacy-policy .policy-item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+
+  margin-top: 20px;
+}
+
+#privacy-policy .policy-item h3 {
+  font-size: 1.5rem;
+  color: red;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  section {
+    padding: 20px;
+  }
+
+  #about,
+  #faq,
+  #privacy-policy {
+    padding: 20px;
+  }
+
+  .faq-item,
+  .policy-item {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  h {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+/* about- faw- policy end */
