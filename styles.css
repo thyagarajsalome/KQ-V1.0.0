@@ -25,8 +25,10 @@ p {
 
 #about,
 h1 {
+  margin-top: 30px;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
   text-align: center;
-  margin-top: 50px;
 }
 
 .navbar {
@@ -64,7 +66,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+
   color: white;
   padding: 10px 20px;
 }
@@ -116,8 +118,8 @@ h1 {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #444;
-  color: white;
+  background-color: #fff;
+
   padding: 10px 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   z-index: 1;
@@ -125,17 +127,21 @@ h1 {
 
 .dropdown-content a {
   display: block;
-  color: white;
+  color: black;
   text-decoration: none;
   padding: 5px 20px;
 }
 
 .dropdown-content a:hover {
-  background-color: #555;
+  background-color: #ccc;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+.nav-item dropdown,
+i {
+  margin-right: 5px;
 }
 
 @media (max-width: 768px) {
@@ -174,16 +180,17 @@ main {
 }
 
 .quiz-card {
-  background-color: white;
+  border: 1px solid #ccc;
+  background-color: #fff;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0, 1, 0, 0.2);
+  padding: 20px;
   text-align: center;
   transition: all 0.4s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   position: relative;
   overflow: hidden;
 }
