@@ -33,7 +33,8 @@ body {
   transition: background-color 0.3s;
 }
 .option:hover {
-  background-color: #86c0ec;
+ 
+color: #2196f3;
 }
 .option.correct {
   background-color: #4caf50;
