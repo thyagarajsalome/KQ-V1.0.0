@@ -33,8 +33,7 @@ body {
   transition: background-color 0.3s;
 }
 .option:hover {
- 
-color: #2196f3;
+  color: #2196f3;
 }
 .option.correct {
   background-color: #4caf50;
@@ -68,22 +67,15 @@ color: #2196f3;
 
   display: inline-block;
   border: 1px solid #4a4a4a8a;
-  padding: 12px 24px;
+  padding: 10px 20px;
   cursor: pointer;
   background-color: #ffffff;
   color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .back-btn:hover {
-  background-color: #86c0ec;
-  color: black
-  border-color: #5aa0d4;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background-color: yellowgreen;
+  color: black;
 }
 
 .back-btn:active {
