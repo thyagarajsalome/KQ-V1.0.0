@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="kn">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ಕನ್ನಡ ಅಕ್ಷರಗಳ ಡ್ರ್ಯಾಗ್ ಆಂಡ್ ಡ್ರಾಪ್ ಆಟ</title>
+    <link rel="stylesheet" href="./kaalpha.css" />
+  </head>
+  <body>
+    <!-- Title and instructions in Kannada -->
+    <h1>ಕನ್ನಡ ಅಕ್ಷರಗಳ ಡ್ರ್ಯಾಗ್ ಆಂಡ್ ಡ್ರಾಪ್ ಆಟ</h1>
+    <p>
+      ಬಲದ ಪ್ಯಾನೆಲಿನಲ್ಲಿ ಇದ್ದ ಅಕ್ಷರಗಳನ್ನು ಎಡದ ಪ್ಯಾನೆಲ್ಗೆ ಎಳೆದುಕೊಳ್ಳಿ.<br />
+      ಅಕ್ಷರಗಳನ್ನು ಮೇಲಕ್ಕೆ ಅಥವಾ ಕೆಳಗೆ ಎಳೆಯುವ ಮೂಲಕ ಸರಿಹೊಂದಿಸಬಹುದು (ಎಳೆಯುವಾಗ ಹಸಿರು
+      ಬಣ್ಣ ಕಾಣಿಸುತ್ತದೆ).<br />
+      "×" ಗುರುತು ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿದರೆ, ಅಕ್ಷರವು ತೆಗೆದುಹಾಕಲ್ಪಟ್ಟು, ಬಲದ ಪ್ಯಾನೆಲ್ಗೆ
+      ಹಿಂತಿರುಗುತ್ತದೆ.<br />
+      "ಉತ್ತರ ಪರಿಶೀಲಿಸಿ" ಒತ್ತಿ ಮತ್ತು "ಸರಿಯಾದ ಅಕ್ಷರಗಳನ್ನು ಪರಿಶೀಲಿಸಿ" ಬಟನ್ ಮೂಲಕ
+      ಸರಿಯಾದ ಕ್ರಮ ನೋಡಿ.<br />
+      ಪುನಃ ಆರಂಭಿಸಲು "ಮರುಸ್ಥಾಪಿಸಿ" ಬಳಸಿ.
+    </p>
+
+    <div id="game-container">
+      <!-- Left Container: "ಇಲ್ಲಿ ಇರಿಸಿ" (Place Here) with scroll -->
+      <div id="left-container" class="container">
+        <h2>ಇಲ್ಲಿ ಇರಿಸಿ</h2>
+        <!-- Placed letters will appear here -->
+      </div>
+
+      <!-- Right Container: "ಅಕ್ಷರಗಳು" (Letters) -->
+      <div id="right-container" class="container">
+        <h2>ಅಕ್ಷರಗಳು</h2>
+        <!-- Draggable letters will appear here -->
+      </div>
+    </div>
+
+    <div id="control-buttons">
+      <button id="check-btn">ಉತ್ತರ ಪರಿಶೀಲಿಸಿ</button>
+      <button id="reset-btn">ಮರುಸ್ಥಾಪಿಸಿ</button>
+      <button id="show-correct-btn">ಸರಿಯಾದ ಅಕ್ಷರಗಳನ್ನು ಪರಿಶೀಲಿಸಿ</button>
+    </div>
+
+    <!-- Section to show correct order (in Kannada) -->
+    <div id="correct-order">
+      <h2>ಸರಿಯಾದ ಕ್ರಮ</h2>
+      <div id="correct-letters"></div>
+    </div>
+
+    <!-- Popup for feedback -->
+    <div id="popup">
+      <div id="popup-message"></div>
+    </div>
+
+    <script>
+      // === ಆಟದ ಮಾಹಿತಿ ===
+      const kannadaLetters = [
+        "ಅ",
+        "ಆ",
+        "ಇ",
+        "ಈ",
+        "ಉ",
+        "ಊ",
+        "ಋ",
+        "ಎ",
+        "ಏ",
+        "ಐ",
+        "ಒ",
+        "ಓ",
+        "ಔ",
+        "ಕ",
+        "ಖ",
+        "ಗ",
+        "ಘ",
+        "ಙ",
+        "ಚ",
+        "ಛ",
+        "ಜ",
+        "ಝ",
+        "ಞ",
+        "ಟ",
+        "ಠ",
+        "ಡ",
+        "ಢ",
+        "ಣ",
+        "ತ",
+        "ಥ",
+        "ದ",
+        "ಧ",
+        "ನ",
+        "ಪ",
+        "ಫ",
+        "ಬ",
+        "ಭ",
+        "ಮ",
+        "ಯ",
+        "ರ",
+        "ಲ",
+        "ವ",
+        "ಶ",
+        "ಷ",
+        "ಸ",
+        "ಹ",
+        "ಳ",
+        "ಅಂ",
+        "ಅಃ",
+      ];
+      // ಮೂಲ ಸೂಚನೆ (ರಿಸೆಟ್ ಮತ್ತು ಸರಿಯಾದ ಕ್ರಮ ತೋರಣಕ್ಕಾಗಿ)
+      const originalLetters = [...kannadaLetters];
+      // ಬಲದ ಪ್ಯಾನೆಲಿನಲ್ಲಿ ಲಭ್ಯವಿರುವ ಅಕ್ಷರಗಳು
+      let availableLetters = [...kannadaLetters];
+
+      // === ಡೊಮ್ ಅಂಶಗಳು ===
+      const leftContainer = document.getElementById("left-container");
+      const rightContainer = document.getElementById("right-container");
+      const checkBtn = document.getElementById("check-btn");
+      const resetBtn = document.getElementById("reset-btn");
+      const showCorrectBtn = document.getElementById("show-correct-btn");
+      const correctOrderSection = document.getElementById("correct-order");
+      const correctLettersDiv = document.getElementById("correct-letters");
+      const popup = document.getElementById("popup");
+      const popupMessage = document.getElementById("popup-message");
+
+      // === ಆಟದ ಆರಂಭ (ರಿಸೆಟ್) ಕಾರ್ಯವಿಧಾನ ===
+      function resetGame() {
+        availableLetters = [...originalLetters];
+        clearLeftContainer();
+        populateRightContainer();
+        correctOrderSection.style.display = "none";
+      }
+
+      function clearLeftContainer() {
+        leftContainer.innerHTML = "<h2>ಇಲ್ಲಿ ಇರಿಸಿ</h2>";
+      }
+
+      function populateRightContainer() {
+        rightContainer.innerHTML = "<h2>ಅಕ್ಷರಗಳು</h2>";
+        // ಲಭ್ಯವಿರುವ ಅಕ್ಷರಗಳನ್ನು ರ್ಯಾಂಡಮ್ ಮಾಡಿ
+        const shuffled = availableLetters.sort(() => Math.random() - 0.5);
+        shuffled.forEach((letter) => {
+          const letterElem = document.createElement("div");
+          letterElem.classList.add("draggable");
+          letterElem.setAttribute("draggable", "true");
+          letterElem.dataset.letter = letter;
+          letterElem.textContent = letter;
+          letterElem.addEventListener("dragstart", dragStart);
+          letterElem.addEventListener("dragend", dragEnd);
+          rightContainer.appendChild(letterElem);
+        });
+      }
+
+      resetBtn.addEventListener("click", resetGame);
+
+      // === ಡ್ರ್ಯಾಗ್ ಆಂಡ್ ಡ್ರಾಪ್ ಹ್ಯಾಂಡ್ಲರ್‌ಗಳು ===
+      function dragStart(event) {
+        event.dataTransfer.setData("text/plain", event.target.dataset.letter);
+        event.dataTransfer.setData("source", event.target.parentElement.id);
+        event.target.classList.add("dragging");
+      }
+      function dragEnd(event) {
+        event.target.classList.remove("dragging");
+      }
+
+      // ಎಡ ಪ್ಯಾನೆಲ್ಗೆ ಅಕ್ಷರಗಳನ್ನು ಹೊಸದಾಗಿ ಸೇರಿಸಲು ಅಥವಾ ಮರುಸರಣಿಗೆ ಬಿಡಲು
+      leftContainer.addEventListener("dragover", function (event) {
+        event.preventDefault();
+        this.style.background = "#e0ffe0"; // ಎಳೆಯುವಾಗ ಹಸಿರು ಬಣ್ಣ
+      });
+      leftContainer.addEventListener("dragleave", function (event) {
+        this.style.background = "#fff";
+      });
+      leftContainer.addEventListener("drop", function (event) {
+        event.preventDefault();
+        this.style.background = "#fff";
+        const letter = event.dataTransfer.getData("text/plain");
+        const source = event.dataTransfer.getData("source");
+
+        // ಕಡ್ಡಾಯಸ್ಥಳ: container ಮೇಲೆ(dropzone) ನೇರವಾಗಿ ಹಾಕಿದರೆ, ಅಕ್ಷರವನ್ನು ಅನೋದಾಗಿ ಸೇರಿಸಿ.
+        if (
+          event.target === leftContainer ||
+          event.target.id === "left-container" ||
+          !event.target.classList.contains("placed-letter")
+        ) {
+          addLetterToLeft(letter);
+        } else if (event.target.classList.contains("placed-letter")) {
+          // ಲಂಬ ಸ್ಥಿತಿಯನ್ನು ಆಧರಿಸಿ ಅಕ್ಷರವನ್ನು ಮೊದಲು ಅಥವಾ ನಂತರ ಸೇರಿಸಿ.
+          const rect = event.target.getBoundingClientRect();
+          const offset = event.clientY - rect.top;
+          if (offset < rect.height / 2) {
+            insertLetterBefore(letter, event.target);
+          } else {
+            insertLetterAfter(letter, event.target);
+          }
+        }
+
+        // ಯದಿರುವ ಅಕ್ಷರ ಬಲದಿಂದ ಬಂದಿದ್ದರೆ, ಅದನ್ನು ಕರಗಬ್ದಿ ಮತ್ತು ಲಭ್ಯ ಅಕ್ಷರಗಳಿಂದ ತೆಗೆದುಹಾಕಿ.
+        if (source === "right-container") {
+          const items = rightContainer.querySelectorAll(".draggable");
+          items.forEach((item) => {
+            if (item.dataset.letter === letter) {
+              item.remove();
+            }
+          });
+          availableLetters = availableLetters.filter((l) => l !== letter);
+        }
+        // ಎಡದಿಂದ ಮರುಸರಣಿ ಮಾಡಿದರೆ, ಮೂಲ ಅಂಶವನ್ನು ತೆಗೆದು ಹಾಕಿ.
+        if (source === "left-container") {
+          const items = leftContainer.querySelectorAll(".placed-letter");
+          items.forEach((item) => {
+            if (
+              item.dataset.letter === letter &&
+              item.classList.contains("dragging")
+            ) {
+              item.remove();
+            }
+          });
+        }
+      });
+
+      // === ಸಹಾಯಕರ ಕಾರ್ಯಗಳು: ಎಡ ಪ್ಯಾನೆಲ್ಗೆ ಅಕ್ಷರ ಸೇರಿಸುವುದು ===
+      function createPlacedLetter(letter) {
+        const container = document.createElement("div");
+        container.classList.add("placed-letter");
+        container.setAttribute("draggable", "true");
+        container.dataset.letter = letter;
+
+        const span = document.createElement("span");
+        span.textContent = letter;
+
+        // ಅಕ್ಷರ ತೆಗೆಯಲು "×" ಗುರುತು ಸೃಷ್ಟಿಸಿ
+        const removeIcon = document.createElement("span");
+        removeIcon.classList.add("remove-btn");
+        removeIcon.textContent = "×";
+        removeIcon.addEventListener("click", function (e) {
+          e.stopPropagation();
+          // ಅಕ್ಷರವನ್ನು ಬಲದ ಪ್ಯಾನೆಲ್ಗೆ ಹಿಂತಿರುಗಿಸಿ.
+          availableLetters.push(letter);
+          populateRightContainer();
+          container.remove();
+        });
+
+        container.appendChild(span);
+        container.appendChild(removeIcon);
+
+        // ಮರುಸರಣಿಗಾಗಿ ಡ್ರ್ಯಾಗ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.
+        container.addEventListener("dragstart", dragStart);
+        container.addEventListener("dragend", dragEnd);
+        return container;
+      }
+
+      function addLetterToLeft(letter) {
+        const placedElem = createPlacedLetter(letter);
+        leftContainer.appendChild(placedElem);
+      }
+      function insertLetterBefore(letter, refNode) {
+        const placedElem = createPlacedLetter(letter);
+        leftContainer.insertBefore(placedElem, refNode);
+      }
+      function insertLetterAfter(letter, refNode) {
+        const placedElem = createPlacedLetter(letter);
+        if (refNode.nextSibling) {
+          leftContainer.insertBefore(placedElem, refNode.nextSibling);
+        } else {
+          leftContainer.appendChild(placedElem);
+        }
+      }
+
+      // === ಉತ್ತರ ಪರಿಶೀಲನೆ ===
+      checkBtn.addEventListener("click", () => {
+        let placed = [];
+        leftContainer.querySelectorAll(".placed-letter").forEach((el) => {
+          placed.push(el.dataset.letter);
+        });
+        let correctCount = 0;
+        for (let i = 0; i < placed.length; i++) {
+          if (placed[i] === originalLetters[i]) {
+            correctCount++;
+          }
+        }
+        const score = Math.round((correctCount / originalLetters.length) * 100);
+        let message = "";
+        if (score < 35) {
+          message = `ಅಂಕಗಳು: ${score}<br>ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ!`;
+        } else if (score >= 35 && score < 70) {
+          message = `ಅಂಕಗಳು: ${score}<br>ಸಂತೃಪ್ತಿ!`;
+        } else if (score >= 70 && score < 90) {
+          message = `ಅಂಕಗಳು: ${score}<br>ಚೆನ್ನಾಗಿದೆ!`;
+        } else if (score >= 90 && score < 100) {
+          message = `ಅಂಕಗಳು: ${score}<br>ಅದ್ಭುತ!`;
+        } else if (score === 100) {
+          message = `ಅಂಕಗಳು: ${score}<br>ನೀವು ಗೆದ್ದಿದ್ದೀರಿ!`;
+          celebrate();
+        }
+        showPopup(message);
+      });
+
+      // === ಸರಿಯಾದ ಅಕ್ಷರಗಳ ಕ್ರಮ ತೋರಿಸಿ ===
+      showCorrectBtn.addEventListener("click", () => {
+        correctLettersDiv.innerHTML = "";
+        originalLetters.forEach((letter) => {
+          const letterSpan = document.createElement("span");
+          letterSpan.classList.add("letter");
+          letterSpan.textContent = letter;
+          correctLettersDiv.appendChild(letterSpan);
+        });
+        correctOrderSection.style.display = "block";
+      });
+
+      // === ಪಾಪ್ ಅಪ್ ಪ್ರತಿಕ್ರಿಯೆ ===
+      function showPopup(message) {
+        popupMessage.innerHTML = message;
+        popup.style.display = "flex";
+        setTimeout(() => {
+          popup.style.display = "none";
+        }, 3000);
+      }
+
+      // === ಜಯೋತ್ಸಾಹದ ಕಾಂಫೆಟ್ಟು ಎನಿಮೇಶನ್ ===
+      function celebrate() {
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement("div");
+          confetti.classList.add("confetti");
+          confetti.style.left = Math.random() * window.innerWidth + "px";
+          confetti.style.backgroundColor = getRandomColor();
+          confetti.style.animationDelay = Math.random() * 0.5 + "s";
+          document.body.appendChild(confetti);
+          setTimeout(() => {
+            confetti.remove();
+          }, 3000);
+        }
+      }
+      function getRandomColor() {
+        const colors = [
+          "red",
+          "blue",
+          "green",
+          "orange",
+          "purple",
+          "pink",
+          "yellow",
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      // === ಆಟ ಪ್ರಾರಂಭ (ರಿಸೆಟ್) ===
+      resetGame();
+    </script>
+  </body>
+</html>
