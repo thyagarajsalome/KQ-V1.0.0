@@ -136,7 +136,6 @@ body {
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  text-align: center;
   padding: 1rem;
   transition: transform 0.3s;
 }
@@ -146,9 +145,8 @@ body {
 }
 
 .quiz-card img {
-  max-width: 100%;
+  max-width: 80%;
   border-radius: 4px;
-  margin-bottom: 1rem;
 }
 
 .quiz-card h3 {
@@ -158,9 +156,11 @@ body {
 }
 
 .btn {
+  display: flex;
   border: 1px dashed rgba(128, 128, 128, 0.581);
+  justify-content: center;
   display: inline-block;
-  padding: 10px;
+  padding: 5px 10px;
   color: #333;
   text-decoration: none;
   border-radius: 4px;
@@ -199,13 +199,6 @@ body {
   text-align: center;
 }
 
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-bottom: 1rem;
-}
-
 .footer-column {
   margin: 1rem 0;
 }
@@ -224,13 +217,14 @@ body {
 }
 
 .footer-column ul li a {
+  display: flex;
   color: #333;
   text-decoration: none;
   transition: color 0.3s;
 }
 
 .footer-column ul li a:hover {
-  color: #fff;
+  color: red;
 }
 
 .copy {
