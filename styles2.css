@@ -2,9 +2,9 @@
 
 body {
   font-family: "Noto Sans Kannada";
-  max-width: 600px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
   background-color: #f4f4f4;
   text-align: center;
 }
@@ -82,4 +82,21 @@ body {
 .back-btn:active {
   transform: translateY(1px);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  margin-top: 2rem;
+  padding: 0.8rem 1.8rem;
+  border: 0;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: rgba(128, 128, 128, 0.382);
+}
+
+.btn--primary:hover {
+  background: rgb(212, 211, 211);
+  font-weight: bold;
 }
