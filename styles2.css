@@ -34,6 +34,7 @@ body {
   transition: background-color 0.3s;
 }
 .option:hover {
+  border: 0.2px dashed rgba(128, 128, 128, 0.501);
   color: #2196f3;
 }
 .option.correct {
