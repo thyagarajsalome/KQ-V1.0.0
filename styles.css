@@ -1,313 +1,219 @@
-@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+Kannada:wght@100..900&family=Orbitron:wght@400..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
-
-/* Reset some basic elements */
+:root {
+  --bg: #0b1020;
+  --surface: #12172b;
+  --surface-2: #1a2040;
+  --card: #0f1530;
+  --text: #e6ecff;
+  --muted: #8ea2c6;
+  --accent: #439fa6;
+  --accent-2: #226697;
+  --radius: 16px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f7f9fc;
+    --surface: #ffffff;
+    --surface-2: #f1f5fa;
+    --card: #fff;
+    --text: #0d1222;
+    --muted: #5d677a;
+    --accent: #2b6cf6;
+    --accent-2: #0bb88a;
+    --shadow: 0 8px 20px rgba(13, 18, 34, 0.1);
+  }
+}
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
-
 body {
-  font-family: "Noto Sans Kannada";
+  font-family: "Outfit", "Noto Serif Kannada", sans-serif;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.6;
-  background: #f4f4f4;
-  color: #333;
 }
 a {
-  color: #333;
+  text-decoration: none;
+  color: inherit;
 }
 
-/* Container utility */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-/* Navbar Styles */
+/* Navbar */
 .navbar {
-  background: #fff;
-  border-bottom: 1px solid #ddd;
   position: sticky;
   top: 0;
-  width: 100%;
-  z-index: 100;
+  z-index: 50;
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
-
 .nav-container {
+  max-width: 1200px;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 12px 20px;
 }
-
 .logo {
-  font-family: "Noto Serif Kannada", serif;
-  font-size: 1.5rem;
-  color: #3e6f6c;
+  font-size: 1.2rem;
+  font-weight: 800;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
+  color: var(--accent);
 }
-
-/* Menu toggle for mobile */
 .menu-toggle {
   display: none;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   cursor: pointer;
 }
-
-/* Nav Menu */
 .nav-menu {
   list-style: none;
   display: flex;
-  align-items: center;
+  gap: 16px;
 }
-
-.nav-menu li {
-  position: relative;
-}
-
 .nav-link {
-  display: block;
-  padding: 0.75rem 1rem;
-  text-decoration: none;
-  color: #333;
-  transition: background 0.3s;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: 0.2s;
 }
-
 .nav-link:hover {
-  background: #f0f0f0;
+  background: var(--surface-2);
 }
-
-/* Dropdown Menu */
 .dropdown-menu {
   position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fff;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+  padding: 10px;
   list-style: none;
-  border: 1px solid #ddd;
-  min-width: 200px;
   display: none;
-  z-index: 200;
+  margin-top: 6px;
 }
-
-.dropdown-menu li a {
-  padding: 0.75rem 1rem;
-  display: block;
-  color: #333;
-}
-
-.dropdown:hover > .dropdown-menu {
+.dropdown:hover .dropdown-menu {
   display: block;
 }
-
-/* Hero Section */
-.hero {
-  text-align: center;
-  padding: 3rem 1rem;
-
-  color: #333;
-}
-
-.hero h1 {
-  font-family: "Noto Serif Kannada", serif;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  max-width: 800px;
-  margin: auto;
-}
-
-/* Quiz Cards Section */
-.quiz-section {
-  padding: 2rem 0;
-}
-
-.quiz-categories {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.quiz-card {
-  background: #f0f0f0;
-  border: 1px dashed rgba(128, 128, 128, 0.483);
-  border-radius: 8px;
-  padding: 0.5rem;
-  transition: transform 0.3s;
-}
-
-.quiz-card:hover {
-  transform: translateY(-5px);
-}
-
-.quiz-card img {
-  max-width: 80%;
-  border-radius: 4px;
-}
-
-.quiz-card h3 {
-  margin-bottom: 0.5rem;
-  font-family: "Noto Serif Kannada";
-  color: black;
-}
-
-.btn {
-  color: #3e6f6c;
-}
-
-.btn:hover {
-  color: dodgerblue;
-}
-
-/* Info Section (About, FAQ, Policy) */
-.info-section {
-  background: #fff;
-  padding: 2rem 1rem;
-  margin: 2rem 0;
+.dropdown-menu a {
+  display: block;
+  padding: 8px 12px;
   border-radius: 8px;
 }
-
-.info-section h1,
-.info-section h2 {
-  margin-bottom: 1rem;
-  font-family: "Noto Serif Kannada", serif;
-  color: black;
+.dropdown-menu a:hover {
+  background: var(--surface-2);
 }
 
-.info-section p {
-  margin-bottom: 1rem;
-  line-height: 1.8;
-}
-
-/* Footer */
-/* Footer */
-.footer {
-  background: #f0f0f0;
-  color: #333;
-  padding: 2rem 0;
-  text-align: center;
-  width: 100%;
-}
-
-.footer-column {
-  display: flex;
-  justify-content: center;
-  margin: 1rem 0;
-}
-
-.footer-column ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.footer-column li {
-  margin: 0.5rem;
-}
-
-.footer-column a {
-  text-decoration: none;
-  color: #333;
-  display: flex;
-  align-items: center;
-  transition: color 0.3s ease;
-}
-
-.footer-column a:hover {
-  color: #3e6f6c;
-}
-
-.footer-column a i {
-  margin-right: 0.5rem;
-}
-
-.copy {
-  font-size: 0.9rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #ddd;
-  margin-top: 1rem;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.copy h4 {
-  margin-top: 0.5rem;
-  font-weight: 500;
-  color: #666;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .footer-column ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .footer-column li {
-    margin: 0.25rem 0;
-  }
-}
-
-@media (min-width: 769px) {
-  .footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
-  .footer-column {
-    display: inline-block;
-    vertical-align: top;
-    width: auto;
-    margin: 0 1.5rem;
-  }
-
-  .copy {
-    flex-basis: 100%;
-  }
-}
-
-/* Responsive Styles */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
   }
-
   .nav-menu {
-    display: flex;
     flex-direction: column;
     position: absolute;
-    top: 70px;
+    top: 60px;
     left: 0;
     width: 100%;
-    background: #fff;
+    background: var(--surface);
     display: none;
-    border-top: 1px solid #ddd;
   }
-
   .nav-menu.active {
     display: flex;
   }
+}
 
-  .nav-menu li {
-    width: 100%;
-    text-align: center;
-  }
+/* Hero */
+.hero {
+  padding: 60px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  color: #fff;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+.hero p {
+  max-width: 800px;
+  margin: auto;
+  font-size: 1.05rem;
+}
 
-  .dropdown-menu {
-    position: static;
-    border: none;
-    box-shadow: none;
-  }
+/* Quiz section */
+.quiz-section {
+  padding: 40px 20px;
+}
+.quiz-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+.quiz-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: 0.25s;
+}
+.quiz-card:hover {
+  transform: translateY(-4px);
+}
+.quiz-card h3 {
+  margin-bottom: 16px;
+}
+.btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 10px;
+  transition: 0.25s;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Info section */
+.info-section {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.info-section h1,
+.info-section h2 {
+  margin: 20px 0 10px;
+  font-weight: 800;
+}
+.info-section p {
+  margin-bottom: 14px;
+  color: var(--muted);
+}
+
+/* Footer */
+.footer {
+  background: var(--surface-2);
+  padding: 30px 20px;
+  margin-top: 40px;
+}
+.footer-column ul {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+.footer-column a {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+.copy {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: var(--muted);
 }

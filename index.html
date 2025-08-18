@@ -2,299 +2,124 @@
 <html lang="kn">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="google-site-verification"
-      content="of_pRvg6YQBwtKsdlZhbUOEOOn24aY4eUfvzr0AtpRo"
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="kannada news, kannadaquiz, quiz in kannada"
+      content="Kannada Quiz Platform — Test your knowledge in Kannada across categories"
     />
-    <meta
-      name="keywords"
-      content="Kannada News Today, kannada quiz, quiz in kannada, Kannada News, Karnataka Suddi, IPL 2025, RCB News, IPL Cricket Matches Top Kannada News, Top Karnataka News, Karnataka News, Karnataka State News, Bengaluru City News, Karnataka District News, Kannada Latest Trending News, Karnataka Top Stories,  Karnataka News Headlines &amp; Live News Updates, ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸುದ್ದಿ, ಬೆಂಗಳೂರು ನಗರ ಸುದ್ದಿ, ಕರ್ನಾಟಕ ಜಿಲ್ಲಾ ಸುದ್ದಿ, ಕರ್ನಾಟಕದ ಇತ್ತೀಚಿನ ಸುದ್ದಿಗಳು, ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಸುದ್ದಿಗಳು, ಕರ್ನಾಟಕದ ತಾಜಾ ಸುದ್ದಿಗಳು, ರಾಜಕೀಯ ಸುದ್ದಿ, ಕನ್ನಡ ಸಿನಿಮಾ, ಮನರಂಜನೆ ಸುದ್ದಿ, Kannada News Now, Latest Kannada News, Kannada Live News, Kannada News Today, Breaking News Kannada, Online News Headlines, ಕನ್ನಡ ವಾರ್ತೆ, ಬ್ರೇಕಿಂಗ್​ ಸುದ್ದಿಗಳು"
-    />
-    <meta name="author" content="Kannada Quiz Platform" />
-    <meta property="og:type" content="website" />
-    <title>Kannada Quiz</title>
+    <title>ಕನ್ನಡ ಕ್ವಿಜ್ — Modern UI</title>
+    <link rel="stylesheet" href="./styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Kannada:wght@400;700&family=Outfit:wght@300;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Kannada:wght@400;700&family=Outfit:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="canonical" href="https://kannadaquiz.in/" />
   </head>
   <body>
-    <!-- Navbar -->
     <nav class="navbar">
-      <div class="container nav-container">
+      <div class="nav-container">
         <div class="logo"><i class="fas fa-book-open"></i> ಕನ್ನಡ ಕ್ವಿಜ್</div>
-        <div class="menu-toggle" id="mobile-menu" onclick="toggleMenu()">
-          <i class="fas fa-bars"></i>
-        </div>
+        <div class="menu-toggle" id="mobile-menu">☰</div>
         <ul class="nav-menu" id="navMenu">
-          <li class="nav-item">
-            <a href="#home" class="nav-link">
-              <i class="fas fa-home"></i> Home
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link">
-              <i class="fas fa-flask"></i> ಕ್ವಿಜ್ ವಿಭಾಗಗಳು
-              <i class="fas fa-caret-down"></i>
-            </a>
+          <li><a href="#home" class="nav-link">ಮುಖಪುಟ</a></li>
+          <li class="dropdown">
+            <a href="#" class="nav-link">ಕ್ವಿಜ್ ವಿಭಾಗಗಳು ▾</a>
             <ul class="dropdown-menu">
-              <li>
-                <a href="./general.html" target="_blank"
-                  ><i class="fas fa-lightbulb"></i> ಸಾಮಾನ್ಯ ಕ್ವಿಜ್</a
-                >
-              </li>
-              <li>
-                <a href="./science.html" target="_blank"
-                  ><i class="fas fa-atom"></i> ವಿಜ್ಞಾನ ಕ್ವಿಜ್</a
-                >
-              </li>
-              <li>
-                <a href="./food.html" target="_blank"
-                  ><i class="fas fa-utensils"></i> ಆಹಾರ ಕ್ವಿಜ್</a
-                >
-              </li>
-              <li>
-                <a href="./sports.html" target="_blank"
-                  ><i class="fas fa-futbol"></i> ಕ್ರೀಡೆ ಕ್ವಿಜ್</a
-                >
-              </li>
-              <li>
-                <a href="./animalBirds.html" target="_blank"
-                  ><i class="fas fa-dove"></i> ಪ್ರಾಣಿ-ಪಕ್ಷಿ</a
-                >
-              </li>
-              <li>
-                <a href="./historical.html" target="_blank"
-                  ><i class="fas fa-landmark"></i> ಐತಿಹಾಸಿಕ</a
-                >
-              </li>
-              <li>
-                <a href="./world.html" target="_blank"
-                  ><i class="fas fa-globe"></i> ದೇಶ-ವಿದೇಶ</a
-                >
-              </li>
+              <li><a href="./general.html">ಸಾಮಾನ್ಯ</a></li>
+              <li><a href="./science.html">ವಿಜ್ಞಾನ</a></li>
+              <li><a href="./food.html">ಆಹಾರ</a></li>
+              <li><a href="./sports.html">ಕ್ರೀಡೆ</a></li>
+              <li><a href="./animalBirds.html">ಪ್ರಾಣಿ-ಪಕ್ಷಿ</a></li>
+              <li><a href="./historical.html">ಐತಿಹಾಸಿಕ</a></li>
+              <li><a href="./world.html">ದೇಶ-ವಿದೇಶ</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#contact" class="nav-link"
-              ><i class="fas fa-envelope"></i> ಸಂಪರ್ಕ</a
-            >
-          </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link">
-              <i class="fas fa-info-circle"></i> ಇನ್ನಷ್ಟು
-              <i class="fas fa-caret-down"></i>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="#about"><i class="fas fa-info"></i> ಕುರಿತು</a>
-              </li>
-              <li>
-                <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
-              </li>
-              <li>
-                <a href="#policy"><i class="fas fa-file-alt"></i> Policy</a>
-              </li>
-            </ul>
-          </li>
+          <li><a href="#about" class="nav-link">ಕುರಿತು</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#policy" class="nav-link">Policy</a></li>
         </ul>
       </div>
     </nav>
 
-    <!-- End Navbar -->
+    <header class="hero">
+      <h1>ಕ್ವಿಜ್ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್‌ಗೆ ಸ್ವಾಗತ!</h1>
+      <p>
+        ಕನ್ನಡ ಕ್ವಿಜ್ ಮೂಲಕ ನಿಮ್ಮ ತಿಳುವಳಿಕೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ ಮತ್ತು ಹೆಚ್ಚಿಸಿಕೊಳ್ಳಿ.
+        ಎಲ್ಲಾ ವಯೋಮಾನದವರಿಗೂ ಸೂಕ್ತವಾದ ಶಿಕ್ಷಣಾತ್ಮಕ ಮತ್ತು ಮನರಂಜನಾ ಕ್ವಿಜ್‌ಗಳು ಇಲ್ಲಿ
+        ಲಭ್ಯ.
+      </p>
+    </header>
 
-    <main class="container">
-      <section class="hero">
-        <h1>ಕ್ವಿಜ್ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್‌ಗೆ ಸ್ವಾಗತ!</h1>
-        <p>
-          ಕನ್ನಡ ರಸಪ್ರಶ್ನೆಗೆ ಸ್ವಾಗತ! ಈ ರಸಪ್ರಶ್ನೆಯಲ್ಲಿ ಎಲ್ಲರೂ ಭಾಗವಹಿಸಬಹುದು ಮತ್ತು
-          ಕನ್ನಡ ವಿಷಯಗಳ ಕುರಿತು ತಮ್ಮ ತಿಳುವಳಿಕೆಯನ್ನು ಪರೀಕ್ಷಿಸಿಕೊಳ್ಳಬಹುದು ಹಾಗೂ
-          ಹೆಚ್ಚಿಸಿಕೊಳ್ಳಬಹುದು. ಇದಲ್ಲದೆ, ಇದು ಬ್ಲಾಗ್‌ಗಳು ಮತ್ತು ಪ್ರಚಲಿತ ಲೇಖನಗಳನ್ನು
-          ಓದಲು ಒಂದು ಕೇಂದ್ರವಾಗಿದೆ. ನಾವು ಅನೇಕ ಬಗೆಯ ವಿಷಯಗಳನ್ನು ನೀಡಲು
-          ಪ್ರಯತ್ನಿಸುತ್ತೇವೆ
-        </p>
-      </section>
-
+    <main>
       <section id="home" class="quiz-section">
         <div class="quiz-categories">
-          <!-- Each quiz-card can be adjusted with proper images and links -->
           <div class="quiz-card">
-            <!-- <img src="https://via.placeholder.com/130" alt="ಸಾಮಾನ್ಯ ಜ್ಞಾನ" /> -->
             <h3>ಸಾಮಾನ್ಯ ಜ್ಞಾನ</h3>
-            <a href="./general.html" class="btn" target="_blank"
-              >ಕ್ವಿಜ್ ಆರಂಭಿಸಿ</a
-            >
+            <a href="./general.html" class="btn">ಆರಂಭಿಸಿ</a>
           </div>
           <div class="quiz-card">
-            <!-- <img src="https://via.placeholder.com/130" alt="ವಿಜ್ಞಾನ" /> -->
             <h3>ವಿಜ್ಞಾನ</h3>
-            <a href="./science.html" class="btn" target="_blank"
-              >ಕ್ವಿಜ್ ಆರಂಭಿಸಿ</a
-            >
+            <a href="./science.html" class="btn">ಆರಂಭಿಸಿ</a>
           </div>
           <div class="quiz-card">
-            <!-- <img src="https://via.placeholder.com/130" alt="ಆಹಾರ" /> -->
             <h3>ಆಹಾರ</h3>
-            <a href="./food.html" class="btn" target="_blank">ಕ್ವಿಜ್ ಆರಂಭಿಸಿ</a>
+            <a href="./food.html" class="btn">ಆರಂಭಿಸಿ</a>
           </div>
           <div class="quiz-card">
-            <!-- <img src="https://via.placeholder.com/130" alt="ಕ್ರೀಡೆ" /> -->
             <h3>ಕ್ರೀಡೆ</h3>
-            <a href="./sports.html" class="btn" target="_blank"
-              >ಕ್ವಿಜ್ ಆರಂಭಿಸಿ</a
-            >
+            <a href="./sports.html" class="btn">ಆರಂಭಿಸಿ</a>
           </div>
           <div class="quiz-card">
-            <!-- <img src="https://via.placeholder.com/130" alt="ಪ್ರಾಣಿ-ಪಕ್ಷಿ" /> -->
             <h3>ಪ್ರಾಣಿ-ಪಕ್ಷಿ</h3>
-            <a href="./animalBirds.html" class="btn" target="_blank"
-              >ಕ್ವಿಜ್ ಆರಂಭಿಸಿ</a
-            >
+            <a href="./animalBirds.html" class="btn">ಆರಂಭಿಸಿ</a>
           </div>
           <div class="quiz-card">
-            <!-- <img src="https://via.placeholder.com/130" alt="ಐತಿಹಾಸಿಕ" /> -->
             <h3>ಐತಿಹಾಸಿಕ</h3>
-            <a href="./historical.html" class="btn" target="_blank"
-              >ಕ್ವಿಜ್ ಆರಂಭಿಸಿ</a
-            >
+            <a href="./historical.html" class="btn">ಆರಂಭಿಸಿ</a>
           </div>
           <div class="quiz-card">
-            <!-- <img src="https://via.placeholder.com/130" alt="ದೇಶ-ವಿದೇಶ" /> -->
             <h3>ದೇಶ-ವಿದೇಶ</h3>
-            <a href="./world.html" class="btn" target="_blank"
-              >ಕ್ವಿಜ್ ಆರಂಭಿಸಿ</a
-            >
+            <a href="./world.html" class="btn">ಆರಂಭಿಸಿ</a>
           </div>
           <div class="quiz-card">
-            <!-- <img src="https://via.placeholder.com/130" alt="ಪ್ರಕೃತಿ" /> -->
-            <h3>ಪ್ರಕೃತಿ</h3>
-            <a href="./nature.html" class="btn" target="_blank"
-              >ಕ್ವಿಜ್ ಆರಂಭಿಸಿ</a
-            >
-          </div>
-          <div class="quiz-card">
-            <!-- <img src="https://via.placeholder.com/130" alt="ಪ್ರಕೃತಿ" /> -->
             <h3>ಕನ್ನಡ ಅಕ್ಷರಗಳ ಆಟ</h3>
-            <a href="./kaalpha.html" class="btn" target="_blank"
-              >ಕ್ವಿಜ್ ಆರಂಭಿಸಿ</a
-            >
+            <a href="./kaalpha.html" class="btn">ಆರಂಭಿಸಿ</a>
           </div>
         </div>
       </section>
 
-      <!-- About, FAQ, and Policy Section -->
       <section id="about" class="info-section">
-        <h1>ಕನ್ನಡ ಕ್ವಿಜ್/About</h1>
+        <h1>ಕನ್ನಡ ಕ್ವಿಜ್ / About</h1>
         <p>
-          ಕನ್ನಡ ಕ್ವಿಜ್ ಒಂದು ನವೀನ ಮತ್ತು ಶಿಕ್ಷಣಾತ್ಮಕ ಕ್ವಿಜ್ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಆಗಿದ್ದು,
-          ಇಲ್ಲಿ ವಿವಿಧ ವಿಭಾಗಗಳಲ್ಲಿ ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ಪರೀಕ್ಷಿಸಲು ಮತ್ತು ಹೆಚ್ಚಿಸಲು
-          ಅವಕಾಶ ನೀಡಲಾಗುತ್ತದೆ. ನಮ್ಮ ಮುಖ್ಯ ಗುರಿ, ಕನ್ನಡ ಭಾಷೆಯಲ್ಲಿ ಮಕ್ಕಳ ಮತ್ತು
-          ಪ್ರೌಢರಿಗೂ ಸೂಕ್ತವಾದ ಪ್ರಶ್ನೋತ್ತರಗಳನ್ನು ನೀಡುವುದು, ಹಾಗೂ ಹೆಚ್ಚಿನ
-          ತಿಳುವಳಿಕೆಯನ್ನು ಹಂಚುವುದು.
+          ಕನ್ನಡ ಕ್ವಿಜ್ ಒಂದು ನವೀನ ಮತ್ತು ಶಿಕ್ಷಣಾತ್ಮಕ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್. ಇಲ್ಲಿ ವಿವಿಧ
+          ವಿಷಯಗಳಲ್ಲಿ ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ಪರೀಕ್ಷಿಸಲು ಅವಕಾಶ.
         </p>
+        <h2 id="faq">FAQ</h2>
+        <p>ಈ ಕ್ವಿಜ್ ಉಚಿತವೇ? ಹೌದು, ಎಲ್ಲರಿಗೂ ಉಚಿತ.</p>
+        <h2 id="policy">ಗೌಪ್ಯತಾ ನೀತಿ / Policy</h2>
         <p>
-          ಈ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್‌ನಲ್ಲಿರುವ ಪ್ರತಿಯೊಂದು ವಿಭಾಗವು ವೈಶಿಷ್ಟ್ಯಮಯ ಮತ್ತು ಪ್ರೌಢ
-          ಅಭಿವೃದ್ಧಿಯನ್ನು ಕಾಣಿಸುತ್ತದೆ. ನಮ್ಮಲ್ಲಿ ಸಾಮಾನ್ಯ ಜ್ಞಾನ, ವಿಜ್ಞಾನ, ಆಹಾರ,
-          ಕ್ರೀಡೆ, ಐತಿಹಾಸಿಕ ವಿಷಯಗಳು ಮತ್ತು ಇತರೆ ವಿಷಯಗಳ ಮೇಲೆ ಕ್ವಿಜ್‌ಗಳನ್ನು
-          ಸೃಷ್ಟಿಸಲಾಗಿದೆ.
-          <strong>ಒಂದು ಸಣ್ಣ ಪ್ರಯತ್ನದಿಂದ ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ಪರೀಕ್ಷಿಸಿ!</strong>
-        </p>
-        <p>
-          ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ನಾವು ಬಹುಮಾನವಾಗಿ ಗಮನಿಸುತ್ತೇವೆ. ನಾವು ಸದಾ ನಿಮಗೆ
-          ಉತ್ತಮ ಅನುಭವವನ್ನು ನೀಡಲು ಈ ಕ್ವಿಜ್ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಅನ್ನು ಇನ್ನಷ್ಟು
-          ಉತ್ತಮಗೊಳಿಸುವ ಪ್ರಯತ್ನ ಮಾಡುತ್ತೇವೆ.
-        </p>
-
-        <h2 id="faq">ಸಾಮಾನ್ಯ ಪ್ರಶ್ನೋತ್ತರಗಳು/FAQ</h2>
-        <p>
-          ಕನ್ನಡ ಕ್ವಿಜ್ ಎಂದರೇನು? ಕನ್ನಡ ಕ್ವಿಜ್ ಎನ್ನುವುದು ವಿವಿಧ ವಿಷಯಗಳ ಕುರಿತು ನಿಮ್ಮ
-          ಜ್ಞಾನವನ್ನು ಪರೀಕ್ಷಿಸಲು ಮತ್ತು ಹೆಚ್ಚಿಸಲು ವಿನ್ಯಾಸಗೊಳಿಸಲಾದ ಆನ್‌ಲೈನ್
-          ವೇದಿಕೆಯಾಗಿದೆ. ಸಾಮಾನ್ಯ ಜ್ಞಾನ, ವಿಜ್ಞಾನ, ಇತಿಹಾಸ ಮತ್ತು ಇತರ ಹಲವಾರು
-          ವಿಷಯಗಳನ್ನು ಒಳಗೊಂಡಂತೆ ಕ್ವಿಜ್‌ಗಳನ್ನು ಒದಗಿಸುತ್ತೇವೆ.
-        </p>
-        <p>
-          ಭಾಗವಹಿಸಲು ಯಾವುದೇ ಶುಲ್ಕವಿದೆಯೇ? ಇಲ್ಲ, ನಮ್ಮ ಕ್ವಿಜ್‌ಗಳಲ್ಲಿ ಭಾಗವಹಿಸಲು
-          ಯಾವುದೇ ಶುಲ್ಕವಿಲ್ಲ.
-        </p>
-
-        <h2 id="policy">ಗೌಪ್ಯತಾ ನೀತಿ/Policy</h2>
-        <p>
-          ನಾವು ನಿಮ್ಮ ಖಾಸಗಿ ಮಾಹಿತಿಯನ್ನು ಗೌರವಿಸುತ್ತೇವೆ. ನಮ್ಮ ವೇದಿಕೆಯನ್ನು ಸುಧಾರಿಸಲು
-          ಹಾಗೂ ವೈಯಕ್ತಿಕಗೊಳಿಸಲು ಮಾತ್ರ ಮಾಹಿತಿಯನ್ನು ಬಳಸಲಾಗುತ್ತದೆ. ಮೂರನೇ
-          ವ್ಯಕ್ತಿಗಳೊಂದಿಗೆ ನಮ್ಮ ಮಾಹಿತಿ ಹಂಚಿಕೊಳ್ಳುವುದಿಲ್ಲ.
-        </p>
-
-        <h2>ಹಕ್ಕುತ್ಯಾಗ/Disclaimer</h2>
-        <p>
-          ಈ ಕ್ವಿಜ್‌ಗಳು ಮಾಹಿತಿ ಮತ್ತು ಮನರಂಜನೆಗಾಗಿ ಮಾತ್ರ. ಒದಗಿಸಿದ ಮಾಹಿತಿಯ ನಿಖರತೆ
-          ಅಥವಾ ಸಂಪೂರ್ಣತೆಯ ಬಗ್ಗೆ ನಾವು ಖಾತರಿಪಡಿಸುವುದಿಲ್ಲ. ನೀವು ಹೆಚ್ಚಿನ ಸಂಶೋಧನೆ
-          ಮಾಡಲು ಮನಸ್ಸುಪಡಬಹುದು. ಇಂಟರ್ನೆಟ್‌ನಿಂದ ಸಂಗ್ರಹಿಸಿರುವ ಡೇಟಾ ಬಳಕೆಯಿಂದ ಉಂಟಾಗುವ
-          ಯಾವುದೇ ನಷ್ಟ ಅಥವಾ ಹಾನಿಗೆ ನಾವು ಹೊಣೆಗಾರರಾಗುವುದಿಲ್ಲ.
+          ನಾವು ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಯನ್ನು ಗೌರವಿಸುತ್ತೇವೆ. ಯಾವುದೇ ಮೂರನೇ ವ್ಯಕ್ತಿಗೆ
+          ಹಂಚಲಾಗುವುದಿಲ್ಲ.
         </p>
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
       <div class="footer-column">
         <ul>
-          <li><a href="./general.html" target="_blank">ಸಾಮಾನ್ಯ ಜ್ಞಾನ</a></li>
-          <li><a href="./science.html" target="_blank">ವಿಜ್ಞಾನ</a></li>
-          <li><a href="./food.html" target="_blank">ಆಹಾರ</a></li>
-          <li><a href="./sports.html" target="_blank">ಕ್ರೀಡೆ</a></li>
-          <li>
-            <a href="./animalBirds.html" target="_blank">ಪ್ರಾಣಿ-ಪಕ್ಷಿ</a>
-          </li>
-          <li><a href="./historical.html" target="_blank">ಐತಿಹಾಸಿಕ</a></li>
-          <li><a href="./world.html" target="_blank">ದೇಶ-ವಿದೇಶ</a></li>
-          <li><a href="./nature.html" target="_blank">ಪ್ರಕೃತಿ</a></li>
+          <li><a href="./general.html">ಸಾಮಾನ್ಯ</a></li>
+          <li><a href="./science.html">ವಿಜ್ಞಾನ</a></li>
+          <li><a href="./food.html">ಆಹಾರ</a></li>
+          <li><a href="./sports.html">ಕ್ರೀಡೆ</a></li>
         </ul>
       </div>
-      <div class="footer-column">
-        <ul>
-          <li>
-            <a href="#contact"
-              ><i class="fas fa-envelope"></i> contact@toolwebsite.in</a
-            >
-          </li>
-          <li>
-            <a href="#contact"><i class="fas fa-map-marker-alt"></i> ಕರ್ನಾಟಕ</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="copy">
-        &copy; 2025 ಕನ್ನಡ ಕ್ವಿಜ್. ಎಲ್ಲಾ ಹಕ್ಕುಗಳು ಮೀಸಲಾಗಿದೆ.
-        <h4>Version 1.0.0</h4>
-      </div>
+      <div class="copy">© 2025 ಕನ್ನಡ ಕ್ವಿಜ್. ಎಲ್ಲಾ ಹಕ್ಕುಗಳು ಮೀಸಲಾಗಿದೆ.</div>
     </footer>
 
     <script>
-      // Toggle mobile menu
-      function toggleMenu() {
-        const navMenu = document.getElementById("navMenu");
-        navMenu.classList.toggle("active");
-      }
-
-      // Close menu on nav-link click (useful for mobile)
-      document.querySelectorAll(".nav-link").forEach((link) => {
-        link.addEventListener("click", () => {
-          const navMenu = document.getElementById("navMenu");
-          navMenu.classList.remove("active");
-        });
+      document.getElementById("mobile-menu").addEventListener("click", () => {
+        document.getElementById("navMenu").classList.toggle("active");
       });
     </script>
   </body>
