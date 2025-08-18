@@ -217,3 +217,51 @@ a {
   font-size: 0.9rem;
   color: var(--muted);
 }
+
+/* Hero Highlight Section */
+.hero-highlight {
+  background-color: var(--surface);
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  padding: 80px 20px; /* ✅ fixed spacing */
+  margin: 40px auto; /* ✅ center + space from other sections */
+  border-radius: 16px; /* ✅ rounded section */
+  max-width: 1100px; /* ✅ keep it neat in large screens */
+  text-align: center; /* ✅ center content */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.hero-highlight h2 {
+  font-size: 2.4rem; /* slightly bigger */
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--accent);
+}
+
+.hero-highlight p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 30px; /* ✅ balanced gap */
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.btn-hero {
+  display: inline-block;
+  background: var(--accent); /* ✅ fixed var() bug */
+  color: #fff;
+  font-weight: 700;
+  padding: 14px 32px; /* ✅ wider button */
+  border-radius: 40px;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+}
+
+.btn-hero:hover {
+  background: var(--accent-2);
+  color: #000;
+}
