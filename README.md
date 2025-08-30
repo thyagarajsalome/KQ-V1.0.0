@@ -7,19 +7,19 @@ This project provides multiple quiz categories in Kannada, making learning fun a
 
 ## 🌟 Features
 
-- 🏠 Modern UI & Responsive Design  
+- 🏠 Modern UI & Responsive Design
 - 📝 Multiple quiz categories:
-  - ಸಾಮಾನ್ಯ (General Knowledge)  
-  - ವಿಜ್ಞಾನ (Science)  
-  - ಆಹಾರ (Food)  
-  - ಕ್ರೀಡೆ (Sports)  
-  - ಪ್ರಾಣಿ-ಪಕ್ಷಿ (Animals & Birds)  
-  - ಐತಿಹಾಸಿಕ (History)  
-  - ದೇಶ-ವಿದೇಶ (World)  
-  - ಕನ್ನಡ ಅಕ್ಷರಗಳ ಆಟ (Kannada Alphabet Game)  
-- 🎨 Clean dark-themed layout  
-- 📱 Mobile-friendly navigation with dropdown menus  
-- 🔒 Privacy-friendly (no user data collection)  
+  - ಸಾಮಾನ್ಯ (General Knowledge)
+  - ವಿಜ್ಞಾನ (Science)
+  - ಆಹಾರ (Food)
+  - ಕ್ರೀಡೆ (Sports)
+  - ಪ್ರಾಣಿ-ಪಕ್ಷಿ (Animals & Birds)
+  - ಐತಿಹಾಸಿಕ (History)
+  - ದೇಶ-ವಿದೇಶ (World)
+  - ಕನ್ನಡ ಅಕ್ಷರಗಳ ಆಟ (Kannada Alphabet Game)
+- 🎨 Clean dark-themed layout
+- 📱 Mobile-friendly navigation with dropdown menus
+- 🔒 Privacy-friendly (no user data collection)
 
 ---
 
@@ -37,3 +37,4 @@ This project provides multiple quiz categories in Kannada, making learning fun a
 ├── world.html          # World quiz page
 ├── kaalpa.html         # Kannada Alphabet game
 └── assets/             # Images, icons, or other assets (optional)
+```

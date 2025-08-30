@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ಕನ್ನಡ ಅಕ್ಷರಗಳು — ಡ್ರ್ಯಾಗ್ & ಡ್ರಾಪ್ (Modern UI)</title>
+    <title>ಕನ್ನಡ ಅಕ್ಷರಗಳು — ಡ್ರ್ಯಾಗ್ & ಡ್ರಾಪ್ (Improved UI)</title>
     <style>
       :root {
-        --bg: #0b1020; /* deep ink */
+        --bg: #0b1020;
         --surface: #12172b;
         --surface-2: #1a2040;
         --card: #0f1530;
@@ -22,6 +22,7 @@
         --shadow: 0 10px 30px rgba(0, 0, 0, 0.35),
           inset 0 0 0 1px rgba(255, 255, 255, 0.04);
       }
+
       @media (prefers-color-scheme: light) {
         :root {
           --bg: #f7f9fc;
@@ -39,15 +40,19 @@
           --shadow: 0 10px 30px rgba(13, 18, 34, 0.08);
         }
       }
+
       * {
         box-sizing: border-box;
       }
+
       html,
       body {
         height: 100%;
-      }
-      body {
         margin: 0;
+        overflow: hidden;
+      }
+
+      body {
         font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
           Noto Sans Kannada, Noto Sans, Arial, sans-serif;
         background: radial-gradient(
@@ -63,27 +68,21 @@
           var(--bg);
         color: var(--text);
         line-height: 1.6;
+        display: flex;
+        flex-direction: column;
       }
+
       a {
         color: inherit;
       }
-      .app {
-        max-width: 1100px;
-        margin-inline: auto;
-        padding: 24px;
-      }
 
-      /* Header */
+      /* Header - compact */
       .header {
         display: flex;
         gap: 16px;
         align-items: center;
         justify-content: space-between;
-        position: sticky;
-        top: 0;
-        z-index: 5;
-        padding: 14px 16px;
-        margin: -24px -24px 12px;
+        padding: 8px 16px;
         background: linear-gradient(
             180deg,
             rgba(0, 0, 0, 0.35),
@@ -92,71 +91,93 @@
           var(--surface);
         backdrop-filter: blur(8px);
         border-bottom: var(--border);
+        flex-shrink: 0;
       }
+
       .brand {
         display: flex;
         gap: 12px;
         align-items: center;
       }
+
       .logo {
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
         background: linear-gradient(135deg, var(--accent), var(--accent-2));
         box-shadow: var(--shadow);
       }
+
       .title {
         font-weight: 800;
         letter-spacing: 0.3px;
-      }
-      .subtitle {
-        color: var(--muted);
-        font-size: 0.95rem;
+        font-size: 1.1rem;
       }
 
-      /* Controls toolbar */
+      .subtitle {
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      /* Controls toolbar - compact */
       .toolbar {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 6px;
       }
+
       .btn {
         appearance: none;
         border: 0;
-        border-radius: 12px;
-        padding: 10px 14px;
+        border-radius: 8px;
+        padding: 6px 10px;
         background: var(--surface-2);
         color: var(--text);
         cursor: pointer;
         box-shadow: var(--shadow);
-        transition: transform 0.08s ease, background 0.2s ease,
-          box-shadow 0.2s ease;
-        font-weight: 700;
+        transition: transform 0.08s ease, background 0.2s ease;
+        font-weight: 600;
+        font-size: 0.85rem;
       }
+
       .btn:hover {
         transform: translateY(-1px);
       }
+
       .btn:active {
         transform: translateY(1px);
       }
+
       .btn--primary {
         background: linear-gradient(135deg, var(--accent), #8ebaff);
         color: #051028;
       }
+
       .btn--success {
         background: linear-gradient(135deg, var(--accent-2), #c4ffe9);
         color: #041c17;
       }
+
       .btn--ghost {
         background: transparent;
         border: var(--border);
       }
+
       .btn--danger {
         background: linear-gradient(135deg, #ff7a7a, #ffb1b1);
         color: #3d0404;
       }
 
-      /* Info card */
+      /* Main container - flexible height */
+      .main-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 8px 16px;
+        overflow: hidden;
+      }
+
+      /* Info card - compact */
       .card {
         border-radius: var(--radius);
         background: linear-gradient(
@@ -168,151 +189,157 @@
         box-shadow: var(--shadow);
         border: var(--border);
       }
+
       .info {
-        padding: 14px 16px;
-        margin: 12px 0;
-        display: grid;
-        gap: 10px;
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        flex-shrink: 0;
       }
+
       details summary {
         cursor: pointer;
         list-style: none;
+        font-size: 0.9rem;
       }
+
       details summary::-webkit-details-marker {
         display: none;
       }
+
       details {
-        border-radius: 12px;
+        border-radius: 8px;
         border: var(--border);
-        padding: 10px 12px;
+        padding: 6px 8px;
         background: var(--surface-2);
+        font-size: 0.85rem;
       }
 
-      /* Grid layout */
+      /* Grid layout - side by side with proper height */
       .grid {
         display: grid;
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: 14px;
-        margin-top: 12px;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+        flex: 1;
+        overflow: hidden;
       }
-      @media (max-width: 960px) {
+
+      @media (max-width: 768px) {
         .grid {
           grid-template-columns: 1fr;
+          grid-template-rows: 1fr 1fr;
         }
       }
 
-      /* Panels */
+      /* Panels - full height with scrolling */
       .panel {
-        min-height: 420px;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
       }
+
       .panel__head {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 12px 14px;
+        padding: 8px 12px;
         border-bottom: var(--border);
+        flex-shrink: 0;
       }
+
       .panel__title {
         font-weight: 800;
         letter-spacing: 0.2px;
+        font-size: 1rem;
       }
+
       .kpi {
         display: flex;
-        gap: 10px;
+        gap: 8px;
         align-items: center;
         color: var(--muted);
       }
+
       .chip {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         border-radius: 999px;
         border: var(--border);
-        padding: 6px 10px;
+        padding: 4px 8px;
         background: var(--surface-2);
       }
 
-      .panel__body {
-        flex: 1;
-        overflow: auto;
-        padding: 12px;
-        display: grid;
-        gap: 10px;
+      .draggable-letter {
+        font-size: 24px;
+        font-weight: 800;
+        cursor: grab;
+        user-select: none;
+        padding: 4px 6px;
+        border-radius: 6px;
+        transition: transform 0.12s ease, background 0.2s ease;
+        display: inline-block;
       }
 
-      /* Draggable items */
-      .draggable,
-      .placed-letter {
-        user-select: none;
-        cursor: grab;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        font-size: 30px;
-        font-weight: 800;
-        padding: 14px 16px;
-        border-radius: 16px;
-        background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.06),
-            rgba(255, 255, 255, 0)
-          ),
-          var(--surface-2);
-        border: var(--border);
-        box-shadow: var(--shadow);
-        transition: transform 0.12s ease, background 0.2s ease,
-          border-color 0.2s ease;
+      .draggable-letter:hover {
+        transform: scale(1.1);
+        background: rgba(255, 255, 255, 0.1);
       }
-      .draggable:active,
-      .placed-letter:active {
+
+      .draggable-letter:active {
         cursor: grabbing;
       }
-      .draggable:hover {
-        transform: translateY(-2px);
-      }
+
       .dragging {
-        transform: scale(1.04) rotate(-1deg) !important;
+        transform: scale(1.2) rotate(-2deg) !important;
         background: linear-gradient(
-            180deg,
-            rgba(126, 240, 193, 0.15),
-            rgba(255, 255, 255, 0)
-          ),
-          var(--surface-2);
+          180deg,
+          rgba(126, 240, 193, 0.25),
+          rgba(255, 255, 255, 0.1)
+        ) !important;
+        z-index: 1000;
+        position: relative;
       }
 
       /* Left list specifics */
-      .placed-letter {
+      .placed-container {
         justify-content: space-between;
+        gap: 8px;
       }
+
       .index {
-        font: 600 12px/1 ui-monospace, SFMono-Regular, Menlo, Consolas,
+        font: 600 11px/1 ui-monospace, SFMono-Regular, Menlo, Consolas,
           monospace;
         color: var(--muted);
-        padding: 3px 8px;
+        padding: 2px 6px;
         border-radius: 999px;
         border: var(--border);
+        background: var(--surface);
       }
+
       .remove-btn {
-        font: 700 22px/1 system-ui;
+        font: 700 16px/1 system-ui;
         color: var(--danger);
         cursor: pointer;
-        padding: 0 6px;
+        padding: 2px 4px;
+        border-radius: 4px;
+        transition: background 0.2s ease;
+      }
+
+      .remove-btn:hover {
+        background: rgba(255, 122, 122, 0.1);
       }
 
       /* Right pool layout */
       #right-container .panel__body {
-        grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
-        align-content: start;
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
       }
 
       /* Empty states */
       .empty {
         opacity: 0.65;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         color: var(--muted);
         text-align: center;
-        padding: 24px;
+        padding: 16px;
+        grid-column: 1 / -1;
       }
 
       /* Footer score */
@@ -320,24 +347,40 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-top: 12px;
-        gap: 12px;
+        gap: 8px;
+        font-size: 0.85rem;
       }
+
       .progress {
         flex: 1;
-        height: 12px;
+        height: 8px;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.08);
         overflow: hidden;
       }
+
       .progress > span {
         display: block;
         height: 100%;
         background: linear-gradient(90deg, var(--accent), var(--accent-2));
         width: 0%;
+        transition: width 0.3s ease;
       }
 
-      /* Modal */
+      /* Drop zones */
+      .drop-zone {
+        min-height: 40px;
+        border: 2px dashed transparent;
+        border-radius: 8px;
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .drop-zone.drag-over {
+        border-color: var(--accent);
+        background: rgba(110, 168, 255, 0.05);
+      }
+
+      /* Modal - responsive */
       .modal {
         position: fixed;
         inset: 0;
@@ -348,41 +391,51 @@
         backdrop-filter: blur(3px);
         z-index: 20;
       }
+
       .modal.open {
         display: flex;
       }
+
       .modal__card {
-        max-width: 820px;
-        width: min(92vw, 820px);
+        max-width: 90vw;
+        max-height: 80vh;
+        width: min(90vw, 600px);
         background: var(--surface);
         border: var(--border);
-        border-radius: 18px;
+        border-radius: 16px;
         box-shadow: var(--shadow);
+        overflow: hidden;
       }
+
       .modal__head {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 14px 16px;
+        padding: 12px 16px;
         border-bottom: var(--border);
       }
+
       .modal__body {
         padding: 16px;
+        overflow-y: auto;
+        max-height: 60vh;
       }
+
       .letters-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        gap: 8px;
       }
+
       .letter-pill {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 10px;
-        border-radius: 12px;
+        padding: 8px;
+        border-radius: 8px;
         border: var(--border);
         background: var(--surface-2);
-        font-size: 28px;
+        font-size: 20px;
         font-weight: 800;
       }
 
@@ -391,17 +444,45 @@
         position: fixed;
         left: 50%;
         transform: translateX(-50%);
-        bottom: 18px;
+        bottom: 16px;
         z-index: 25;
         background: var(--surface);
         border: var(--border);
-        padding: 12px 14px;
-        border-radius: 12px;
+        padding: 8px 12px;
+        border-radius: 8px;
         box-shadow: var(--shadow);
         display: none;
+        font-size: 0.9rem;
       }
+
       .toast.show {
         display: block;
+        animation: slideUp 0.3s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateX(-50%) translateY(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(-50%) translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Scrollbar styling */
+      .panel__body::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      .panel__body::-webkit-scrollbar-track {
+        background: var(--surface);
+      }
+
+      .panel__body::-webkit-scrollbar-thumb {
+        background: var(--muted);
+        border-radius: 2px;
       }
 
       /* Focus */
@@ -413,11 +494,13 @@
       /* Motion reduce */
       @media (prefers-reduced-motion: reduce) {
         .btn,
-        .draggable,
-        .placed-letter {
+        .draggable-letter,
+        .progress > span {
           transition: none;
         }
       }
+
+      /* css gpt */
     </style>
   </head>
   <body>
@@ -441,75 +524,85 @@
           <button class="btn" id="hintBtn" title="ಸಲಹೆ ತೋರಿಸಿ/ಮರೆಮಾಡಿ">
             💡 ಸಲಹೆ
           </button>
-          <button class="btn btn--success" id="checkBtn">
-            ✅ ಉತ್ತರ ಪರಿಶೀಲಿಸಿ
-          </button>
+          <button class="btn btn--success" id="checkBtn">✅ ಪರಿಶೀಲಿಸಿ</button>
           <button class="btn" id="showCorrectBtn">📜 ಸರಿಯಾದ ಕ್ರಮ</button>
           <button class="btn btn--danger" id="resetBtn">↺ ಮರುಸ್ಥಾಪಿಸಿ</button>
         </nav>
       </header>
 
-      <section class="card info">
-        <details id="helpBox" open>
-          <summary><strong>ಬಳಕೆ ಸೂಚನೆ</strong></summary>
-          <div>
-            ಬಲ ಪ್ಯಾನೆಲ್‌ನಿಂದ ಅಕ್ಷರಗಳನ್ನು ಎಡ ಪ್ಯಾನೆಲ್‌ಗೆ ಎಳೆಯಿರಿ ಅಥವಾ ಕ್ಲಿಕ್
-            ಮಾಡಿ. ಎಡ ಪ್ಯಾನೆಲ್‌ನಲ್ಲಿ ಮೇಲ್ಕಡೆ/ಕೆಳಕಡೆಗೆ ಎಳೆದರೆ ಕ್ರಮ ಬದಲಾಗುತ್ತದೆ. ×
-            ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿದರೆ ಅಕ್ಷರವು ಮರು ಬಲಕ್ಕೆ ಹೋಗುತ್ತದೆ.
-          </div>
-        </details>
-        <div class="footer">
-          <div class="kpi">
-            <span class="chip"
-              >ಇಟ್ಟದ್ದು: <span id="placedCount">0</span>/<span id="totalCount"
-                >0</span
-              ></span
-            ><span class="chip">ಅಂಕಗಳು: <span id="score">0</span>%</span>
-          </div>
-          <div class="progress" aria-hidden="true">
-            <span id="progressFill"></span>
-          </div>
-        </div>
-      </section>
-
-      <main class="grid">
-        <!-- Left: Place Here -->
-        <section class="card panel" id="leftPanel" aria-labelledby="leftTitle">
-          <div class="panel__head">
-            <h2 id="leftTitle" class="panel__title">ಇಲ್ಲಿ ಇರಿಸಿ</h2>
+      <div class="main-container">
+        <section class="card info">
+          <details id="helpBox" open>
+            <summary><strong>ಬಳಕೆ ಸೂಚನೆ</strong></summary>
+            <div>
+              ಬಲ ಪ್ಯಾನೆಲ್‌ನಿಂದ ಅಕ್ಷರಗಳನ್ನು ಎಡ ಪ್ಯಾನೆಲ್‌ಗೆ ಎಳೆಯಿರಿ. ಅಕ್ಷರದ ಮೇಲೆ
+              ಕ್ಲಿಕ್ ಮಾಡಿದರೂ ಆಗುತ್ತದೆ. ಎಡ ಪ್ಯಾನೆಲ್‌ನಲ್ಲಿ ಕ್ರಮ ಬದಲಾಯಿಸಲು
+              ಮೇಲ್ಕಡೆ/ಕೆಳಕಡೆಗೆ ಎಳೆಯಿರಿ. × ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿದರೆ ಅಕ್ಷರವು ಮರು ಬಲಕ್ಕೆ
+              ಹೋಗುತ್ತದೆ.
+            </div>
+          </details>
+          <div class="footer">
             <div class="kpi">
-              <span class="chip" id="leftHint">ಅಕ್ಷರಗಳನ್ನು ಇಲ್ಲಿ ಬಿಡಿ</span>
+              <span class="chip"
+                >ಇಟ್ಟದ್ದು: <span id="placedCount">0</span>/<span id="totalCount"
+                  >0</span
+                ></span
+              >
+              <span class="chip">ಅಂಕಗಳು: <span id="score">0</span>%</span>
+            </div>
+            <div class="progress" aria-hidden="true">
+              <span id="progressFill"></span>
             </div>
           </div>
-          <div
-            id="left-container"
-            class="panel__body"
-            role="list"
-            aria-live="polite"
+        </section>
+
+        <main class="grid">
+          <!-- Left: Place Here -->
+          <section
+            class="card panel"
+            id="leftPanel"
+            aria-labelledby="leftTitle"
           >
-            <div class="empty" id="leftEmpty">ಇಲ್ಲಿ ಅಕ್ಷರಗಳನ್ನು ಎಳೆದು ಇಡಿ…</div>
-          </div>
-        </section>
-
-        <!-- Right: Letters -->
-        <section
-          class="card panel"
-          id="rightPanel"
-          aria-labelledby="rightTitle"
-        >
-          <div class="panel__head">
-            <h2 id="rightTitle" class="panel__title">ಅಕ್ಷರಗಳು</h2>
-            <div class="kpi">
-              <span class="chip">ಲಭ್ಯ: <span id="availableCount">0</span></span>
+            <div class="panel__head">
+              <h2 id="leftTitle" class="panel__title">ಇಲ್ಲಿ ಇರಿಸಿ</h2>
+              <div class="kpi">
+                <span class="chip" id="leftHint">ಅಕ್ಷರಗಳನ್ನು ಇಲ್ಲಿ ಬಿಡಿ</span>
+              </div>
             </div>
-          </div>
-          <div
-            id="right-container"
-            class="panel__body"
-            aria-label="Draggable letters"
-          ></div>
-        </section>
-      </main>
+            <div
+              id="left-container"
+              class="panel__body drop-zone"
+              role="list"
+              aria-live="polite"
+            >
+              <div class="empty" id="leftEmpty">
+                ಇಲ್ಲಿ ಅಕ್ಷರಗಳನ್ನು ಎಳೆದು ಇಡಿ…
+              </div>
+            </div>
+          </section>
+
+          <!-- Right: Letters -->
+          <section
+            class="card panel"
+            id="rightPanel"
+            aria-labelledby="rightTitle"
+          >
+            <div class="panel__head">
+              <h2 id="rightTitle" class="panel__title">ಅಕ್ಷರಗಳು</h2>
+              <div class="kpi">
+                <span class="chip"
+                  >ಲಭ್ಯ: <span id="availableCount">0</span></span
+                >
+              </div>
+            </div>
+            <div
+              id="right-container"
+              class="panel__body"
+              aria-label="Draggable letters"
+            ></div>
+          </section>
+        </main>
+      </div>
 
       <!-- Modal: Correct Order -->
       <div class="modal" id="modal">
@@ -640,15 +733,20 @@
           return;
         }
         list.forEach((letter) => {
-          const el = document.createElement("div");
-          el.className = "draggable";
-          el.textContent = letter;
-          el.draggable = true;
-          el.dataset.letter = letter;
-          el.addEventListener("dragstart", dragStart);
-          el.addEventListener("dragend", dragEnd);
-          el.addEventListener("click", () => moveToLeft(letter));
-          rightContainer.appendChild(el);
+          const container = document.createElement("div");
+          container.className = "letter-container";
+
+          const letterEl = document.createElement("span");
+          letterEl.className = "draggable-letter";
+          letterEl.textContent = letter;
+          letterEl.draggable = true;
+          letterEl.dataset.letter = letter;
+          letterEl.addEventListener("dragstart", dragStart);
+          letterEl.addEventListener("dragend", dragEnd);
+          letterEl.addEventListener("click", () => moveToLeft(letter));
+
+          container.appendChild(letterEl);
+          rightContainer.appendChild(container);
         });
       }
 
@@ -656,21 +754,36 @@
         leftContainer.innerHTML = "";
         if (!placed.length) {
           leftContainer.appendChild(leftEmpty);
+          return;
         }
         placed.forEach((letter, idx) => {
-          const row = document.createElement("div");
-          row.className = "placed-letter";
-          row.draggable = true;
-          row.dataset.letter = letter;
-          row.innerHTML = `<span class="index">${
-            idx + 1
-          }</span><span>${letter}</span><span class="remove-btn" title="ತೆಗೆದುಹಾಕಿ">×</span>`;
-          row
-            .querySelector(".remove-btn")
-            .addEventListener("click", () => removeFromLeft(letter, idx));
-          row.addEventListener("dragstart", dragStart);
-          row.addEventListener("dragend", dragEnd);
-          leftContainer.appendChild(row);
+          const container = document.createElement("div");
+          container.className = "letter-container placed-container";
+
+          const indexEl = document.createElement("span");
+          indexEl.className = "index";
+          indexEl.textContent = idx + 1;
+
+          const letterEl = document.createElement("span");
+          letterEl.className = "draggable-letter";
+          letterEl.textContent = letter;
+          letterEl.draggable = true;
+          letterEl.dataset.letter = letter;
+          letterEl.addEventListener("dragstart", dragStart);
+          letterEl.addEventListener("dragend", dragEnd);
+
+          const removeBtn = document.createElement("span");
+          removeBtn.className = "remove-btn";
+          removeBtn.textContent = "×";
+          removeBtn.title = "ತೆಗೆದುಹಾಕಿ";
+          removeBtn.addEventListener("click", () =>
+            removeFromLeft(letter, idx)
+          );
+
+          container.appendChild(indexEl);
+          container.appendChild(letterEl);
+          container.appendChild(removeBtn);
+          leftContainer.appendChild(container);
         });
       }
 
@@ -684,24 +797,34 @@
       }
       function dragEnd(e) {
         e.target.classList.remove("dragging");
+        leftContainer.classList.remove("drag-over");
       }
 
-      // Allow drop on left container (append or reorder before/after)
+      // Drop zone styling
       leftContainer.addEventListener("dragover", (e) => {
         e.preventDefault();
+        leftContainer.classList.add("drag-over");
       });
+
+      leftContainer.addEventListener("dragleave", (e) => {
+        if (!leftContainer.contains(e.relatedTarget)) {
+          leftContainer.classList.remove("drag-over");
+        }
+      });
+
       leftContainer.addEventListener("drop", (e) => {
         e.preventDefault();
+        leftContainer.classList.remove("drag-over");
         const letter = e.dataTransfer.getData("text/plain");
-        const target = e.target.closest(".placed-letter");
+        const target = e.target.closest(".letter-container");
+
         if (dragSource === "right-container") {
-          // from pool to placed
           if (!available.includes(letter)) return;
-          if (target) {
+          if (target && target.querySelector(".draggable-letter")) {
             const rect = target.getBoundingClientRect();
             const before = e.clientY - rect.top < rect.height / 2;
             const insertIndex =
-              [...leftContainer.querySelectorAll(".placed-letter")].indexOf(
+              [...leftContainer.querySelectorAll(".letter-container")].indexOf(
                 target
               ) + (before ? 0 : 1);
             available = available.filter((l) => l !== letter);
@@ -711,15 +834,14 @@
             placed.push(letter);
           }
         } else if (dragSource === "left-container") {
-          // re-order within placed
           const fromIdx = placed.indexOf(letter);
           if (fromIdx === -1) return;
           placed.splice(fromIdx, 1);
-          if (target) {
+          if (target && target.querySelector(".draggable-letter")) {
             const rect = target.getBoundingClientRect();
             const before = e.clientY - rect.top < rect.height / 2;
             const toIdx =
-              [...leftContainer.querySelectorAll(".placed-letter")].indexOf(
+              [...leftContainer.querySelectorAll(".letter-container")].indexOf(
                 target
               ) + (before ? 0 : 1);
             placed.splice(toIdx, 0, letter);
@@ -732,7 +854,8 @@
         updateKPI();
       });
 
-      // Quick click interactions
+      // Quick click
+      // Quick click
       function moveToLeft(letter) {
         if (!available.includes(letter)) return;
         available = available.filter((l) => l !== letter);
@@ -741,9 +864,10 @@
         renderRight();
         updateKPI();
       }
-      function removeFromLeft(letter, index) {
-        placed.splice(index, 1);
-        if (!available.includes(letter)) available.push(letter);
+
+      function removeFromLeft(letter, idx) {
+        placed.splice(idx, 1);
+        available.push(letter);
         renderLeft();
         renderRight();
         updateKPI();
@@ -753,19 +877,22 @@
       shuffleBtn.addEventListener("click", () => {
         available = randShuffle(available);
         renderRight();
-        showToast("ಅಕ್ಷರಗಳು ಮಿಶ್ರಿತವಾದವು");
+        showToast("ಅಕ್ಷರಗಳನ್ನು ಮಿಶ್ರಿತ ಮಾಡಲಾಗಿದೆ");
       });
+
       hintBtn.addEventListener("click", () => {
-        const box = document.getElementById("helpBox");
-        box.open = !box.open;
+        const helpBox = document.getElementById("helpBox");
+        helpBox.open = !helpBox.open;
+        showToast(helpBox.open ? "ಸಲಹೆ ತೋರಿಸಲಾಗಿದೆ" : "ಸಲಹೆ ಮರೆಮಾಡಲಾಗಿದೆ");
       });
 
       checkBtn.addEventListener("click", () => {
-        const correct = placed.filter((l, i) => l === KANNADA[i]).length;
-        const score = Math.round((correct / KANNADA.length) * 100);
-        scoreOut.textContent = score;
-        showToast(`ಅಂಕಗಳು: ${score}%`);
-        if (score === 100) celebrate();
+        let correct = 0;
+        placed.forEach((letter, idx) => {
+          if (letter === KANNADA[idx]) correct++;
+        });
+        const pct = Math.round((correct / KANNADA.length) * 100);
+        showToast(`ಪರಿಶೀಲನೆ: ${correct}/${KANNADA.length} (${pct}%)`);
       });
 
       resetBtn.addEventListener("click", () => {
@@ -774,66 +901,33 @@
         renderLeft();
         renderRight();
         updateKPI();
-        showToast("ಆಟ ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ");
+        showToast("ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ");
       });
 
       showCorrectBtn.addEventListener("click", () => {
         correctGrid.innerHTML = "";
-        KANNADA.forEach((l) => {
-          const s = document.createElement("div");
-          s.className = "letter-pill";
-          s.textContent = l;
-          correctGrid.appendChild(s);
+        KANNADA.forEach((letter) => {
+          const el = document.createElement("div");
+          el.className = "letter-pill";
+          el.textContent = letter;
+          correctGrid.appendChild(el);
         });
         modal.classList.add("open");
       });
-      closeModal.addEventListener("click", () =>
-        modal.classList.remove("open")
-      );
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) modal.classList.remove("open");
+
+      closeModal.addEventListener("click", () => {
+        modal.classList.remove("open");
       });
 
-      // === Confetti ===
-      function celebrate() {
-        for (let i = 0; i < 60; i++) {
-          const c = document.createElement("div");
-          c.className = "confetti";
-          Object.assign(c.style, {
-            position: "fixed",
-            top: "-10px",
-            left: Math.random() * 100 + "%",
-            width: "10px",
-            height: "10px",
-            background: `hsl(${Math.random() * 360} 90% 60%)`,
-            borderRadius: "2px",
-            zIndex: 30,
-            transform: `translateY(0) rotate(0)`,
-          });
-          document.body.appendChild(c);
-          const y = window.innerHeight + 20;
-          c.animate(
-            [
-              { transform: "translateY(0) rotate(0deg)", opacity: 1 },
-              {
-                transform: `translateY(${y}px) rotate(${
-                  360 + Math.random() * 720
-                }deg)`,
-                opacity: 0,
-              },
-            ],
-            { duration: 2600 + Math.random() * 1200, easing: "linear" }
-          );
-          setTimeout(() => c.remove(), 3800);
-        }
-      }
-
       // === Init ===
-      (function init() {
-        renderRight();
+      function init() {
+        available = [...KANNADA];
+        placed = [];
         renderLeft();
+        renderRight();
         updateKPI();
-      })();
+      }
+      init();
     </script>
   </body>
 </html>
