@@ -2,629 +2,505 @@
 <html lang="kn">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ಕನ್ನಡ ಅಕ್ಷರಗಳು — ಡ್ರ್ಯಾಗ್ & ಡ್ರಾಪ್ (Improved UI)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ಕನ್ನಡ ಅಕ್ಷರಮಾಲೆ ಆಟ | Kannada Alphabet Game</title>
     <style>
       :root {
-        --bg: #0b1020;
-        --surface: #12172b;
-        --surface-2: #1a2040;
-        --card: #0f1530;
-        --muted: #8ea2c6;
-        --text: #e6ecff;
-        --accent: #6ea8ff;
-        --accent-2: #7ef0c1;
-        --danger: #ff7a7a;
-        --warning: #ffd36e;
-        --success: #7ef0c1;
-        --border: 1px solid rgba(255, 255, 255, 0.12);
-        --radius: 16px;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.35),
-          inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+        --bg-color: #f0f4f8;
+        --panel-bg: #ffffff;
+        --text-color: #334e68;
+        --muted-color: #708090;
+        --accent-color: #3498db;
+        --success-color: #2ecc71;
+        --danger-color: #e74c3c;
+        --chart-color: #9b59b6;
+        --gold-color: #f1c40f;
+        --silver-color: #bdc3c7;
+        --copper-color: #e67e22;
+        --border-color: #dbe2e9;
+        --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        --radius: 12px;
       }
 
-      @media (prefers-color-scheme: light) {
-        :root {
-          --bg: #f7f9fc;
-          --surface: #ffffff;
-          --surface-2: #f3f6fb;
-          --card: #ffffff;
-          --muted: #556581;
-          --text: #0d1222;
-          --accent: #2b6cf6;
-          --accent-2: #0bb88a;
-          --danger: #e23e3e;
-          --warning: #c98500;
-          --success: #079a6a;
-          --border: 1px solid rgba(13, 18, 34, 0.08);
-          --shadow: 0 10px 30px rgba(13, 18, 34, 0.08);
-        }
-      }
-
+      /* Basic Setup */
       * {
         box-sizing: border-box;
       }
-
       html,
       body {
         height: 100%;
         margin: 0;
+      }
+      body {
+        font-family: "Baloo Tamma 2", ui-sans-serif, system-ui, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
         overflow: hidden;
       }
 
-      body {
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-          Noto Sans Kannada, Noto Sans, Arial, sans-serif;
-        background: radial-gradient(
-            1200px 800px at 10% 0%,
-            rgba(110, 168, 255, 0.15),
-            transparent 60%
-          ),
-          radial-gradient(
-            1000px 700px at 110% -10%,
-            rgba(126, 240, 193, 0.12),
-            transparent 60%
-          ),
-          var(--bg);
-        color: var(--text);
-        line-height: 1.6;
-        display: flex;
-        flex-direction: column;
-      }
-
-      a {
-        color: inherit;
-      }
-
-      /* Header - compact */
+      /* Header */
       .header {
         display: flex;
-        gap: 16px;
-        align-items: center;
         justify-content: space-between;
-        padding: 8px 16px;
-        background: linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.35),
-            rgba(0, 0, 0, 0)
-          ),
-          var(--surface);
-        backdrop-filter: blur(8px);
-        border-bottom: var(--border);
-        flex-shrink: 0;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
       }
-
-      .brand {
+      .title {
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+      .controls {
         display: flex;
-        gap: 12px;
+        gap: 0.5rem;
         align-items: center;
       }
-
-      .logo {
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      .timer {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background-color: var(--panel-bg);
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius);
         box-shadow: var(--shadow);
+        min-width: 90px;
+        text-align: center;
+        transition: color 0.3s, transform 0.3s;
       }
-
-      .title {
-        font-weight: 800;
-        letter-spacing: 0.3px;
-        font-size: 1.1rem;
-      }
-
-      .subtitle {
-        color: var(--muted);
-        font-size: 0.8rem;
-      }
-
-      /* Controls toolbar - compact */
-      .toolbar {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
+      .timer.low-time {
+        color: var(--danger-color);
+        transform: scale(1.1);
       }
 
       .btn {
-        appearance: none;
-        border: 0;
-        border-radius: 8px;
-        padding: 6px 10px;
-        background: var(--surface-2);
-        color: var(--text);
-        cursor: pointer;
-        box-shadow: var(--shadow);
-        transition: transform 0.08s ease, background 0.2s ease;
+        font-family: inherit;
         font-weight: 600;
-        font-size: 0.85rem;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-
-      .btn:active {
-        transform: translateY(1px);
-      }
-
-      .btn--primary {
-        background: linear-gradient(135deg, var(--accent), #8ebaff);
-        color: #051028;
-      }
-
-      .btn--success {
-        background: linear-gradient(135deg, var(--accent-2), #c4ffe9);
-        color: #041c17;
-      }
-
-      .btn--ghost {
-        background: transparent;
-        border: var(--border);
-      }
-
-      .btn--danger {
-        background: linear-gradient(135deg, #ff7a7a, #ffb1b1);
-        color: #3d0404;
-      }
-
-      /* Main container - flexible height */
-      .main-container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        padding: 8px 16px;
-        overflow: hidden;
-      }
-
-      /* Info card - compact */
-      .card {
-        border-radius: var(--radius);
-        background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.04),
-            rgba(255, 255, 255, 0)
-          ),
-          var(--card);
-        box-shadow: var(--shadow);
-        border: var(--border);
-      }
-
-      .info {
-        padding: 8px 12px;
-        margin-bottom: 8px;
-        flex-shrink: 0;
-      }
-
-      details summary {
-        cursor: pointer;
-        list-style: none;
-        font-size: 0.9rem;
-      }
-
-      details summary::-webkit-details-marker {
-        display: none;
-      }
-
-      details {
-        border-radius: 8px;
-        border: var(--border);
-        padding: 6px 8px;
-        background: var(--surface-2);
-        font-size: 0.85rem;
-      }
-
-      /* Grid layout - side by side with proper height */
-      .grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 5px;
-        flex: 1;
-        overflow: hidden;
-      }
-
-      @media (max-width: 768px) {
-        .grid {
-          grid-template-columns: 1fr;
-          grid-template-rows: 1fr 1fr;
-        }
-      }
-
-      /* Panels - full height with scrolling */
-      .panel {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      }
-
-      .panel__head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 8px 12px;
-        border-bottom: var(--border);
-        flex-shrink: 0;
-      }
-
-      .panel__title {
-        font-weight: 800;
-        letter-spacing: 0.2px;
         font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+        border-radius: var(--radius);
+        border: none;
+        cursor: pointer;
+        transition: transform 0.1s ease, box-shadow 0.2s;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+      .btn:active {
+        transform: translateY(0);
+      }
+      .btn:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+      .btn--hint {
+        background-color: var(--accent-color);
+        color: white;
+      }
+      .btn--reset {
+        background-color: var(--danger-color);
+        color: white;
+      }
+      .btn--chart {
+        background-color: var(--chart-color);
+        color: white;
       }
 
-      .kpi {
+      /* Game Board Wrapper */
+      .game-wrapper {
         display: flex;
-        gap: 8px;
-        align-items: center;
-        color: var(--muted);
-      }
-
-      .chip {
-        font-size: 0.75rem;
-        border-radius: 999px;
-        border: var(--border);
-        padding: 4px 8px;
-        background: var(--surface-2);
-      }
-
-      .draggable-letter {
-        font-size: 24px;
-        font-weight: 800;
-        cursor: grab;
-        user-select: none;
-        padding: 4px 6px;
-        border-radius: 6px;
-        transition: transform 0.12s ease, background 0.2s ease;
-        display: inline-block;
-      }
-
-      .draggable-letter:hover {
-        transform: scale(1.1);
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      .draggable-letter:active {
-        cursor: grabbing;
-      }
-
-      .dragging {
-        transform: scale(1.2) rotate(-2deg) !important;
-        background: linear-gradient(
-          180deg,
-          rgba(126, 240, 193, 0.25),
-          rgba(255, 255, 255, 0.1)
-        ) !important;
-        z-index: 1000;
+        flex-direction: column;
+        flex-grow: 1;
         position: relative;
       }
-
-      /* Left list specifics */
-      .placed-container {
-        justify-content: space-between;
-        gap: 8px;
-      }
-
-      .index {
-        font: 600 11px/1 ui-monospace, SFMono-Regular, Menlo, Consolas,
-          monospace;
-        color: var(--muted);
-        padding: 2px 6px;
-        border-radius: 999px;
-        border: var(--border);
-        background: var(--surface);
-      }
-
-      .remove-btn {
-        font: 700 16px/1 system-ui;
-        color: var(--danger);
-        cursor: pointer;
-        padding: 2px 4px;
-        border-radius: 4px;
-        transition: background 0.2s ease;
-      }
-
-      .remove-btn:hover {
-        background: rgba(255, 122, 122, 0.1);
-      }
-
-      /* Right pool layout */
-      #right-container .panel__body {
-        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-      }
-
-      /* Empty states */
-      .empty {
-        opacity: 0.65;
-        font-size: 0.9rem;
-        color: var(--muted);
-        text-align: center;
-        padding: 16px;
-        grid-column: 1 / -1;
-      }
-
-      /* Footer score */
-      .footer {
+      .game-board {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        font-size: 0.85rem;
-      }
-
-      .progress {
-        flex: 1;
-        height: 8px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.08);
+        flex-direction: column;
+        gap: 1.5rem;
+        flex-grow: 1;
         overflow: hidden;
+        transition: filter 0.3s;
+      }
+      .game-board.locked {
+        filter: blur(5px);
+        pointer-events: none;
       }
 
-      .progress > span {
-        display: block;
-        height: 100%;
-        background: linear-gradient(90deg, var(--accent), var(--accent-2));
-        width: 0%;
-        transition: width 0.3s ease;
+      /* Start Screen Overlay */
+      .start-screen {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(240, 244, 248, 0.95);
+        z-index: 500;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1rem;
+        border-radius: var(--radius);
+      }
+      .start-screen h2 {
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+      }
+      .start-screen .levels {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1.5rem;
+      }
+      .level-btn {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        color: white;
+        border-bottom-width: 5px;
+        border-style: solid;
+      }
+      .level-btn.gold {
+        background-color: var(--gold-color);
+        border-color: #c89c0a;
+      }
+      .level-btn.silver {
+        background-color: var(--silver-color);
+        border-color: #95a5a6;
+      }
+      .level-btn.copper {
+        background-color: var(--copper-color);
+        border-color: #b35d1b;
       }
 
-      /* Drop zones */
-      .drop-zone {
-        min-height: 40px;
-        border: 2px dashed transparent;
-        border-radius: 8px;
-        transition: border-color 0.2s ease, background 0.2s ease;
+      /* NEW: Instructions Box */
+      .instructions {
+        background-color: var(--panel-bg);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        padding: 1rem;
+        margin-top: 1.5rem;
+        max-width: 500px;
+        box-shadow: var(--shadow);
+      }
+      .instructions h3 {
+        margin: 0 0 0.75rem 0;
+        color: var(--accent-color);
+        font-size: 1.2rem;
+      }
+      .instructions p {
+        margin: 0.5rem 0;
+        text-align: left;
+        line-height: 1.6;
+        color: var(--text-color);
       }
 
-      .drop-zone.drag-over {
-        border-color: var(--accent);
-        background: rgba(110, 168, 255, 0.05);
-      }
-
-      /* Modal - responsive */
-      .modal {
+      /* Pop-up Overlay (for win/lose messages) */
+      .overlay {
         position: fixed;
         inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
         display: none;
         align-items: center;
         justify-content: center;
-        background: rgba(0, 0, 0, 0.55);
-        backdrop-filter: blur(3px);
-        z-index: 20;
+        text-align: center;
+        z-index: 1000;
+        padding: 1rem;
       }
-
-      .modal.open {
+      .overlay.show {
         display: flex;
       }
-
-      .modal__card {
+      .popup-content {
+        background: var(--panel-bg);
+        border-radius: var(--radius);
+        padding: 2rem 3rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        position: relative;
         max-width: 90vw;
-        max-height: 80vh;
-        width: min(90vw, 600px);
-        background: var(--surface);
-        border: var(--border);
-        border-radius: 16px;
-        box-shadow: var(--shadow);
-        overflow: hidden;
+        animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
       }
-
-      .modal__head {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 16px;
-        border-bottom: var(--border);
-      }
-
-      .modal__body {
-        padding: 16px;
-        overflow-y: auto;
-        max-height: 60vh;
-      }
-
-      .letters-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-        gap: 8px;
-      }
-
-      .letter-pill {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px;
-        border-radius: 8px;
-        border: var(--border);
-        background: var(--surface-2);
-        font-size: 20px;
-        font-weight: 800;
-      }
-
-      /* Toast */
-      .toast {
-        position: fixed;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 16px;
-        z-index: 25;
-        background: var(--surface);
-        border: var(--border);
-        padding: 8px 12px;
-        border-radius: 8px;
-        box-shadow: var(--shadow);
-        display: none;
-        font-size: 0.9rem;
-      }
-
-      .toast.show {
-        display: block;
-        animation: slideUp 0.3s ease;
-      }
-
-      @keyframes slideUp {
-        from {
-          transform: translateX(-50%) translateY(100%);
+      @keyframes pop-in {
+        0% {
+          transform: scale(0.5);
           opacity: 0;
         }
-        to {
-          transform: translateX(-50%) translateY(0);
+        100% {
+          transform: scale(1);
           opacity: 1;
         }
       }
-
-      /* Scrollbar styling */
-      .panel__body::-webkit-scrollbar {
-        width: 4px;
+      .popup-message {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+      }
+      .gold .popup-message {
+        color: var(--gold-color);
+      }
+      .success .popup-message {
+        color: var(--success-color);
+      }
+      .fail .popup-message {
+        color: var(--danger-color);
       }
 
-      .panel__body::-webkit-scrollbar-track {
-        background: var(--surface);
+      .popup-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--muted-color);
+        cursor: pointer;
+        line-height: 1;
+      }
+      .popup-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
       }
 
-      .panel__body::-webkit-scrollbar-thumb {
-        background: var(--muted);
-        border-radius: 2px;
+      /* Confetti Animation for Gold Winner */
+      .confetti {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 2000;
       }
-
-      /* Focus */
-      :focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
+      .confetti-piece {
+        position: absolute;
+        width: 10px;
+        height: 20px;
+        background: #f00;
+        opacity: 0;
+        top: -20px;
+        animation: drop 5s linear forwards;
       }
-
-      /* Motion reduce */
-      @media (prefers-reduced-motion: reduce) {
-        .btn,
-        .draggable-letter,
-        .progress > span {
-          transition: none;
+      @keyframes drop {
+        0% {
+          transform: translateY(0) rotateZ(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotateZ(720deg);
+          opacity: 0;
         }
       }
 
-      /* css gpt */
+      /* (Other styles for game board, slots, letters remain the same) */
+      .slots-container {
+        background: var(--panel-bg);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1rem;
+        overflow-y: auto;
+        border: 1px solid var(--border-color);
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 0.75rem;
+      }
+      .slot {
+        height: 70px;
+        background: #e9eef3;
+        border-radius: 8px;
+        border: 2px dashed var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      .slot.drag-over {
+        border-color: var(--accent-color);
+        background-color: #e0f0ff;
+      }
+      .slot.correct {
+        border-style: solid;
+        border-color: var(--success-color);
+        background-color: #e6f9f0;
+      }
+      .slot__number {
+        position: absolute;
+        top: 4px;
+        left: 6px;
+        font-size: 0.75rem;
+        color: var(--muted-color);
+        font-weight: 700;
+      }
+      .slot.hint-target {
+        animation: pulse-border 1.5s infinite;
+      }
+      @keyframes pulse-border {
+        0% {
+          box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+        }
+      }
+      .pool-container {
+        background: var(--panel-bg);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1rem;
+        border: 1px solid var(--border-color);
+        min-height: 90px;
+        flex-shrink: 0;
+      }
+      .pool-header {
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+      }
+      .letters-pool {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+      }
+      .letter {
+        width: 60px;
+        height: 60px;
+        background: #fff;
+        border: 1px solid var(--border-color);
+        border-bottom: 3px solid var(--border-color);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        cursor: grab;
+        user-select: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .letter:active {
+        cursor: grabbing;
+      }
+      .letter.dragging {
+        opacity: 0.5;
+        transform: scale(1.1);
+        box-shadow: var(--shadow);
+      }
+      .letter.hint-source {
+        animation: pulse-bg 1.5s infinite;
+      }
+      @keyframes pulse-bg {
+        0% {
+          background-color: #d6eaff;
+        }
+        50% {
+          background-color: #a3d1f7;
+        }
+        100% {
+          background-color: #d6eaff;
+        }
+      }
+      .letter.incorrect-drop {
+        animation: shake 0.5s ease-in-out;
+      }
+      @keyframes shake {
+        10%,
+        90% {
+          transform: translate3d(-1px, 0, 0);
+        }
+        20%,
+        80% {
+          transform: translate3d(2px, 0, 0);
+        }
+        30%,
+        50%,
+        70% {
+          transform: translate3d(-4px, 0, 0);
+        }
+        40%,
+        60% {
+          transform: translate3d(4px, 0, 0);
+        }
+      }
     </style>
   </head>
   <body>
-    <div class="app">
-      <header class="header">
-        <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <div>
-            <div class="title">ಕನ್ನಡ ಅಕ್ಷರಗಳ ಆಟ</div>
-            <div class="subtitle">ಎಳೆದು ಬಿಟ್ಟು ಸರಿಯಾದ ಕ್ರಮದಲ್ಲಿ ಅಳವಡಿಸಿ</div>
-          </div>
-        </div>
-        <nav class="toolbar" aria-label="Game controls">
-          <button
-            class="btn btn--ghost"
-            id="shuffleBtn"
-            title="ಅಕ್ಷರಗಳನ್ನು ಮಿಶ್ರಿತ ಮಾಡಿ"
-          >
-            🔀 ಮಿಶ್ರಿತ
-          </button>
-          <button class="btn" id="hintBtn" title="ಸಲಹೆ ತೋರಿಸಿ/ಮರೆಮಾಡಿ">
-            💡 ಸಲಹೆ
-          </button>
-          <button class="btn btn--success" id="checkBtn">✅ ಪರಿಶೀಲಿಸಿ</button>
-          <button class="btn" id="showCorrectBtn">📜 ಸರಿಯಾದ ಕ್ರಮ</button>
-          <button class="btn btn--danger" id="resetBtn">↺ ಮರುಸ್ಥಾಪಿಸಿ</button>
-        </nav>
-      </header>
-
-      <div class="main-container">
-        <section class="card info">
-          <details id="helpBox" open>
-            <summary><strong>ಬಳಕೆ ಸೂಚನೆ</strong></summary>
-            <div>
-              ಬಲ ಪ್ಯಾನೆಲ್‌ನಿಂದ ಅಕ್ಷರಗಳನ್ನು ಎಡ ಪ್ಯಾನೆಲ್‌ಗೆ ಎಳೆಯಿರಿ. ಅಕ್ಷರದ ಮೇಲೆ
-              ಕ್ಲಿಕ್ ಮಾಡಿದರೂ ಆಗುತ್ತದೆ. ಎಡ ಪ್ಯಾನೆಲ್‌ನಲ್ಲಿ ಕ್ರಮ ಬದಲಾಯಿಸಲು
-              ಮೇಲ್ಕಡೆ/ಕೆಳಕಡೆಗೆ ಎಳೆಯಿರಿ. × ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿದರೆ ಅಕ್ಷರವು ಮರು ಬಲಕ್ಕೆ
-              ಹೋಗುತ್ತದೆ.
-            </div>
-          </details>
-          <div class="footer">
-            <div class="kpi">
-              <span class="chip"
-                >ಇಟ್ಟದ್ದು: <span id="placedCount">0</span>/<span id="totalCount"
-                  >0</span
-                ></span
-              >
-              <span class="chip">ಅಂಕಗಳು: <span id="score">0</span>%</span>
-            </div>
-            <div class="progress" aria-hidden="true">
-              <span id="progressFill"></span>
-            </div>
-          </div>
-        </section>
-
-        <main class="grid">
-          <!-- Left: Place Here -->
-          <section
-            class="card panel"
-            id="leftPanel"
-            aria-labelledby="leftTitle"
-          >
-            <div class="panel__head">
-              <h2 id="leftTitle" class="panel__title">ಇಲ್ಲಿ ಇರಿಸಿ</h2>
-              <div class="kpi">
-                <span class="chip" id="leftHint">ಅಕ್ಷರಗಳನ್ನು ಇಲ್ಲಿ ಬಿಡಿ</span>
-              </div>
-            </div>
-            <div
-              id="left-container"
-              class="panel__body drop-zone"
-              role="list"
-              aria-live="polite"
-            >
-              <div class="empty" id="leftEmpty">
-                ಇಲ್ಲಿ ಅಕ್ಷರಗಳನ್ನು ಎಳೆದು ಇಡಿ…
-              </div>
-            </div>
-          </section>
-
-          <!-- Right: Letters -->
-          <section
-            class="card panel"
-            id="rightPanel"
-            aria-labelledby="rightTitle"
-          >
-            <div class="panel__head">
-              <h2 id="rightTitle" class="panel__title">ಅಕ್ಷರಗಳು</h2>
-              <div class="kpi">
-                <span class="chip"
-                  >ಲಭ್ಯ: <span id="availableCount">0</span></span
-                >
-              </div>
-            </div>
-            <div
-              id="right-container"
-              class="panel__body"
-              aria-label="Draggable letters"
-            ></div>
-          </section>
-        </main>
+    <header class="header">
+      <h1 class="title">ಕನ್ನಡ ಅಕ್ಷರಮಾಲೆ ಆಟ 🧸</h1>
+      <div class="controls">
+        <div class="timer" id="timer">00:00</div>
+        <button class="btn btn--hint" id="hintBtn" disabled>💡 ಸಲಹೆ</button>
+        <button class="btn btn--chart" id="chartBtn" disabled>
+          📊 ಅಕ್ಷರ ಪಟ್ಟಿ
+        </button>
+        <button class="btn btn--reset" id="resetBtn">🔄 ಮರುಹೊಂದಿಸು</button>
       </div>
+    </header>
 
-      <!-- Modal: Correct Order -->
-      <div class="modal" id="modal">
-        <div class="modal__card">
-          <div class="modal__head">
-            <h3>ಸರಿಯಾದ ಕ್ರಮ</h3>
-            <button class="btn btn--ghost" id="closeModal" aria-label="Close">
-              ✕
-            </button>
-          </div>
-          <div class="modal__body">
-            <div class="letters-grid" id="correctGrid"></div>
-          </div>
+    <div class="game-wrapper">
+      <div class="start-screen" id="startScreen">
+        <h2>ಒಂದು ಮಟ್ಟವನ್ನು ಆಯ್ಕೆಮಾಡಿ</h2>
+
+        <div class="instructions">
+          <h3>ಆಡುವುದು ಹೇಗೆ?</h3>
+          <p>1. ಮೊದಲಿಗೆ, ಆಟದ ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ (ಚಿನ್ನ, ಬೆಳ್ಳಿ ಅಥವಾ ತಾಮ್ರ).</p>
+          <p>
+            2. ಕೆಳಗಿರುವ ಅಕ್ಷರಗಳನ್ನು ಮೇಲಿರುವ ಸರಿಯಾದ ಸಂಖ್ಯೆಯ ಖಾಲಿ ಜಾಗಕ್ಕೆ ಎಳೆದು
+            ಹಾಕಿ.
+          </p>
+          <p>3. ಸಹಾಯ ಬೇಕಿದ್ದರೆ, 'ಸಲಹೆ' (💡) ಬಟನ್ ಬಳಸಿ.</p>
+          <p>4. ಸಮಯ ಮುಗಿಯುವ ಮುನ್ನ ಆಟವನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ ಗೆಲ್ಲಿರಿ!</p>
+        </div>
+
+        <div class="levels">
+          <button class="btn level-btn gold" data-time="120">
+            🥇 Gold (2 min)
+          </button>
+          <button class="btn level-btn silver" data-time="240">
+            🥈 Silver (4 min)
+          </button>
+          <button class="btn level-btn copper" data-time="360">
+            🥉 Copper (6 min)
+          </button>
         </div>
       </div>
 
-      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <main class="game-board locked" id="gameBoard">
+        <div class="slots-container" id="slotsContainer"></div>
+        <div class="pool-container">
+          <h2 class="pool-header">ಅಕ್ಷರಗಳು:</h2>
+          <div class="letters-pool" id="lettersPool"></div>
+        </div>
+      </main>
     </div>
 
+    <div class="overlay" id="popupOverlay">
+      <div class="popup-content" id="popupContent">
+        <h2 class="popup-message" id="popupMessage"></h2>
+        <button class="btn btn--reset" id="popupResetBtn">
+          🔄 ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ
+        </button>
+      </div>
+    </div>
+
+    <div class="overlay" id="chartModal">
+      <div class="popup-content">
+        <span class="popup-close" id="closeChartModal">&times;</span>
+        <h3>ಕನ್ನಡ ಅಕ್ಷರಮಾಲೆ</h3>
+        <img src="./kannada.jpg" alt="Kannada Alphabet Chart" />
+      </div>
+    </div>
+
+    <div class="confetti" id="confetti-container"></div>
+
     <script>
-      // === Data ===
-      const KANNADA = [
+      const KANNADA_ALPHABET = [
         "ಅ",
         "ಆ",
         "ಇ",
@@ -675,259 +551,261 @@
         "ಅಂ",
         "ಅಃ",
       ];
-      let available = [...KANNADA];
-      let placed = [];
 
-      // === DOM ===
-      const leftContainer = document.getElementById("left-container");
-      const rightContainer = document.getElementById("right-container");
-      const placedCount = document.getElementById("placedCount");
-      const totalCount = document.getElementById("totalCount");
-      const availableCount = document.getElementById("availableCount");
-      const progressFill = document.getElementById("progressFill");
-      const scoreOut = document.getElementById("score");
-      const leftEmpty = document.getElementById("leftEmpty");
-
-      const shuffleBtn = document.getElementById("shuffleBtn");
-      const hintBtn = document.getElementById("hintBtn");
-      const checkBtn = document.getElementById("checkBtn");
-      const resetBtn = document.getElementById("resetBtn");
-      const showCorrectBtn = document.getElementById("showCorrectBtn");
-
-      const modal = document.getElementById("modal");
-      const correctGrid = document.getElementById("correctGrid");
-      const closeModal = document.getElementById("closeModal");
-      const toast = document.getElementById("toast");
-
-      // === Utils ===
-      const randShuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
-      const showToast = (msg) => {
-        toast.textContent = msg;
-        toast.classList.add("show");
-        setTimeout(() => toast.classList.remove("show"), 2400);
-      };
-      const updateKPI = () => {
-        placedCount.textContent = placed.length;
-        totalCount.textContent = KANNADA.length;
-        availableCount.textContent = available.length;
-        const pct =
-          Math.round(
-            (placed.filter((l, i) => l === KANNADA[i]).length /
-              KANNADA.length) *
-              100
-          ) || 0;
-        scoreOut.textContent = pct;
-        progressFill.style.width = `${(placed.length / KANNADA.length) * 100}%`;
-        leftEmpty.style.display = placed.length ? "none" : "block";
+      // DOM Elements
+      const elements = {
+        startScreen: document.getElementById("startScreen"),
+        gameBoard: document.getElementById("gameBoard"),
+        slotsContainer: document.getElementById("slotsContainer"),
+        lettersPool: document.getElementById("lettersPool"),
+        hintBtn: document.getElementById("hintBtn"),
+        chartBtn: document.getElementById("chartBtn"),
+        resetBtn: document.getElementById("resetBtn"),
+        timerDisplay: document.getElementById("timer"),
+        chartModal: document.getElementById("chartModal"),
+        closeChartModal: document.getElementById("closeChartModal"),
+        popupOverlay: document.getElementById("popupOverlay"),
+        popupContent: document.getElementById("popupContent"),
+        popupMessage: document.getElementById("popupMessage"),
+        popupResetBtn: document.getElementById("popupResetBtn"),
+        confettiContainer: document.getElementById("confetti-container"),
       };
 
-      // === Renderers ===
-      function renderRight() {
-        rightContainer.innerHTML = "";
-        const list = randShuffle(available);
-        if (!list.length) {
-          const empty = document.createElement("div");
-          empty.className = "empty";
-          empty.textContent = "ಎಲ್ಲಾ ಅಕ್ಷರಗಳು ಬಳಸಲಾಗಿದೆ!";
-          rightContainer.appendChild(empty);
-          return;
+      // Game State
+      let state = {
+        correctPlacements: 0,
+        timerInterval: null,
+        totalTime: 0,
+        level: "",
+        gameOver: true,
+      };
+
+      // --- Utility Functions ---
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
         }
-        list.forEach((letter) => {
-          const container = document.createElement("div");
-          container.className = "letter-container";
+        return array;
+      }
 
-          const letterEl = document.createElement("span");
-          letterEl.className = "draggable-letter";
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60)
+          .toString()
+          .padStart(2, "0");
+        const secs = (seconds % 60).toString().padStart(2, "0");
+        return `${mins}:${secs}`;
+      }
+
+      function startConfetti() {
+        elements.confettiContainer.innerHTML = "";
+        for (let i = 0; i < 100; i++) {
+          const confettiPiece = document.createElement("div");
+          confettiPiece.className = "confetti-piece";
+          confettiPiece.style.left = `${Math.random() * 100}vw`;
+          confettiPiece.style.animationDelay = `${Math.random() * 5}s`;
+          confettiPiece.style.backgroundColor = `hsl(${
+            Math.random() * 360
+          }, 100%, 50%)`;
+          elements.confettiContainer.appendChild(confettiPiece);
+        }
+      }
+
+      // --- Game Logic ---
+      function startGame(level, timeInSeconds) {
+        state.totalTime = timeInSeconds;
+        state.level = level;
+        state.gameOver = false;
+
+        elements.startScreen.style.display = "none";
+        elements.gameBoard.classList.remove("locked");
+        elements.hintBtn.disabled = false;
+        elements.chartBtn.disabled = false;
+
+        initGameBoard();
+        startTimer();
+      }
+
+      function initGameBoard() {
+        elements.slotsContainer.innerHTML = "";
+        elements.lettersPool.innerHTML = "";
+        state.correctPlacements = 0;
+
+        KANNADA_ALPHABET.forEach((letter, index) => {
+          const slot = document.createElement("div");
+          slot.className = "slot";
+          slot.dataset.index = index;
+          slot.dataset.correctLetter = letter;
+          const slotNumber = document.createElement("span");
+          slotNumber.className = "slot__number";
+          slotNumber.textContent = index + 1;
+          slot.appendChild(slotNumber);
+          elements.slotsContainer.appendChild(slot);
+          slot.addEventListener("dragover", onDragOver);
+          slot.addEventListener("dragleave", onDragLeave);
+          slot.addEventListener("drop", onDrop);
+        });
+
+        const shuffledLetters = shuffleArray([...KANNADA_ALPHABET]);
+        shuffledLetters.forEach((letter) => {
+          const letterEl = document.createElement("div");
+          letterEl.className = "letter";
           letterEl.textContent = letter;
-          letterEl.draggable = true;
           letterEl.dataset.letter = letter;
-          letterEl.addEventListener("dragstart", dragStart);
-          letterEl.addEventListener("dragend", dragEnd);
-          letterEl.addEventListener("click", () => moveToLeft(letter));
-
-          container.appendChild(letterEl);
-          rightContainer.appendChild(container);
+          letterEl.draggable = true;
+          letterEl.addEventListener("dragstart", onDragStart);
+          letterEl.addEventListener("dragend", onDragEnd);
+          elements.lettersPool.appendChild(letterEl);
         });
       }
 
-      function renderLeft() {
-        leftContainer.innerHTML = "";
-        if (!placed.length) {
-          leftContainer.appendChild(leftEmpty);
-          return;
-        }
-        placed.forEach((letter, idx) => {
-          const container = document.createElement("div");
-          container.className = "letter-container placed-container";
+      function startTimer() {
+        let timeRemaining = state.totalTime;
+        elements.timerDisplay.textContent = formatTime(timeRemaining);
+        elements.timerDisplay.classList.remove("low-time");
 
-          const indexEl = document.createElement("span");
-          indexEl.className = "index";
-          indexEl.textContent = idx + 1;
-
-          const letterEl = document.createElement("span");
-          letterEl.className = "draggable-letter";
-          letterEl.textContent = letter;
-          letterEl.draggable = true;
-          letterEl.dataset.letter = letter;
-          letterEl.addEventListener("dragstart", dragStart);
-          letterEl.addEventListener("dragend", dragEnd);
-
-          const removeBtn = document.createElement("span");
-          removeBtn.className = "remove-btn";
-          removeBtn.textContent = "×";
-          removeBtn.title = "ತೆಗೆದುಹಾಕಿ";
-          removeBtn.addEventListener("click", () =>
-            removeFromLeft(letter, idx)
-          );
-
-          container.appendChild(indexEl);
-          container.appendChild(letterEl);
-          container.appendChild(removeBtn);
-          leftContainer.appendChild(container);
-        });
+        state.timerInterval = setInterval(() => {
+          timeRemaining--;
+          elements.timerDisplay.textContent = formatTime(timeRemaining);
+          if (timeRemaining <= 10) {
+            elements.timerDisplay.classList.add("low-time");
+          }
+          if (timeRemaining <= 0) {
+            endGame(false); // Player lost
+          }
+        }, 1000);
       }
 
-      // === DnD ===
-      let dragSource = null;
-      function dragStart(e) {
+      function endGame(isWin) {
+        state.gameOver = true;
+        clearInterval(state.timerInterval);
+        elements.gameBoard.classList.add("locked");
+        elements.popupOverlay.classList.add("show");
+        elements.hintBtn.disabled = true;
+
+        elements.popupContent.className = "popup-content"; // Reset classes
+        if (isWin) {
+          if (state.level === "gold") {
+            elements.popupMessage.textContent = "🏆 ಚಿನ್ನದ ವಿಜೇತ! 🏆";
+            elements.popupContent.classList.add("gold");
+            startConfetti();
+          } else {
+            elements.popupMessage.textContent = "ತುಂಬಾ ಚೆನ್ನಾಗಿದೆ! 🎉";
+            elements.popupContent.classList.add("success");
+          }
+        } else {
+          elements.popupMessage.textContent = "ಸಮಯ ಮುಗಿಯಿತು! 😟";
+          elements.popupContent.classList.add("fail");
+        }
+      }
+
+      function resetGame() {
+        clearInterval(state.timerInterval);
+        state.gameOver = true;
+        elements.startScreen.style.display = "flex";
+        elements.gameBoard.classList.add("locked");
+        elements.popupOverlay.classList.remove("show");
+        elements.confettiContainer.innerHTML = "";
+        elements.timerDisplay.textContent = "00:00";
+        elements.timerDisplay.classList.remove("low-time");
+        elements.hintBtn.disabled = true;
+        elements.chartBtn.disabled = true;
+      }
+
+      // --- Event Handlers ---
+      function onDragStart(e) {
+        if (state.gameOver) return;
         e.dataTransfer.setData("text/plain", e.target.dataset.letter);
-        e.target.classList.add("dragging");
-        dragSource =
-          e.target.closest("#right-container,#left-container")?.id || null;
+        setTimeout(() => e.target.classList.add("dragging"), 0);
       }
-      function dragEnd(e) {
+      function onDragEnd(e) {
         e.target.classList.remove("dragging");
-        leftContainer.classList.remove("drag-over");
+      }
+      function onDragOver(e) {
+        if (state.gameOver) return;
+        e.preventDefault();
+        if (e.target.classList.contains("slot") && !e.target.hasChildNodes()) {
+          e.target.classList.add("drag-over");
+        }
+      }
+      function onDragLeave(e) {
+        e.target.classList.remove("drag-over");
+      }
+      function onDrop(e) {
+        if (state.gameOver) return;
+        e.preventDefault();
+        e.target.classList.remove("drag-over");
+        const droppedLetter = e.dataTransfer.getData("text/plain");
+        const targetSlot = e.target.closest(".slot");
+        const draggedEl = document.querySelector(
+          `.letter[data-letter='${droppedLetter}'].dragging`
+        );
+        if (targetSlot && !targetSlot.querySelector(".letter") && draggedEl) {
+          if (targetSlot.dataset.correctLetter === droppedLetter) {
+            targetSlot.appendChild(draggedEl);
+            draggedEl.draggable = false;
+            draggedEl.style.cursor = "default";
+            targetSlot.classList.add("correct");
+            state.correctPlacements++;
+            if (state.correctPlacements === KANNADA_ALPHABET.length) {
+              endGame(true);
+            }
+          } else {
+            draggedEl.classList.add("incorrect-drop");
+            draggedEl.addEventListener(
+              "animationend",
+              () => draggedEl.classList.remove("incorrect-drop"),
+              { once: true }
+            );
+          }
+        }
       }
 
-      // Drop zone styling
-      leftContainer.addEventListener("dragover", (e) => {
-        e.preventDefault();
-        leftContainer.classList.add("drag-over");
-      });
-
-      leftContainer.addEventListener("dragleave", (e) => {
-        if (!leftContainer.contains(e.relatedTarget)) {
-          leftContainer.classList.remove("drag-over");
+      elements.startScreen.addEventListener("click", (e) => {
+        if (e.target.matches(".level-btn")) {
+          const time = parseInt(e.target.dataset.time, 10);
+          const level = e.target.classList.contains("gold")
+            ? "gold"
+            : e.target.classList.contains("silver")
+            ? "silver"
+            : "copper";
+          startGame(level, time);
         }
       });
 
-      leftContainer.addEventListener("drop", (e) => {
-        e.preventDefault();
-        leftContainer.classList.remove("drag-over");
-        const letter = e.dataTransfer.getData("text/plain");
-        const target = e.target.closest(".letter-container");
-
-        if (dragSource === "right-container") {
-          if (!available.includes(letter)) return;
-          if (target && target.querySelector(".draggable-letter")) {
-            const rect = target.getBoundingClientRect();
-            const before = e.clientY - rect.top < rect.height / 2;
-            const insertIndex =
-              [...leftContainer.querySelectorAll(".letter-container")].indexOf(
-                target
-              ) + (before ? 0 : 1);
-            available = available.filter((l) => l !== letter);
-            placed.splice(insertIndex, 0, letter);
-          } else {
-            available = available.filter((l) => l !== letter);
-            placed.push(letter);
-          }
-        } else if (dragSource === "left-container") {
-          const fromIdx = placed.indexOf(letter);
-          if (fromIdx === -1) return;
-          placed.splice(fromIdx, 1);
-          if (target && target.querySelector(".draggable-letter")) {
-            const rect = target.getBoundingClientRect();
-            const before = e.clientY - rect.top < rect.height / 2;
-            const toIdx =
-              [...leftContainer.querySelectorAll(".letter-container")].indexOf(
-                target
-              ) + (before ? 0 : 1);
-            placed.splice(toIdx, 0, letter);
-          } else {
-            placed.push(letter);
-          }
+      elements.hintBtn.addEventListener("click", () => {
+        if (state.gameOver) return;
+        const firstEmptySlot = document.querySelector(
+          ".slot:not(:has(.letter))"
+        );
+        if (!firstEmptySlot) return;
+        const correctLetter = firstEmptySlot.dataset.correctLetter;
+        const letterInPool = elements.lettersPool.querySelector(
+          `.letter[data-letter='${correctLetter}']`
+        );
+        document
+          .querySelectorAll(".hint-target, .hint-source")
+          .forEach((el) => el.classList.remove("hint-target", "hint-source"));
+        firstEmptySlot.classList.add("hint-target");
+        if (letterInPool) letterInPool.classList.add("hint-source");
+        setTimeout(() => {
+          firstEmptySlot.classList.remove("hint-target");
+          if (letterInPool) letterInPool.classList.remove("hint-source");
+        }, 2000);
+      });
+      elements.resetBtn.addEventListener("click", resetGame);
+      elements.popupResetBtn.addEventListener("click", resetGame);
+      elements.chartBtn.addEventListener("click", () =>
+        elements.chartModal.classList.add("show")
+      );
+      elements.closeChartModal.addEventListener("click", () =>
+        elements.chartModal.classList.remove("show")
+      );
+      elements.chartModal.addEventListener("click", (e) => {
+        if (e.target === elements.chartModal) {
+          elements.chartModal.classList.remove("show");
         }
-        renderLeft();
-        renderRight();
-        updateKPI();
       });
-
-      // Quick click
-      // Quick click
-      function moveToLeft(letter) {
-        if (!available.includes(letter)) return;
-        available = available.filter((l) => l !== letter);
-        placed.push(letter);
-        renderLeft();
-        renderRight();
-        updateKPI();
-      }
-
-      function removeFromLeft(letter, idx) {
-        placed.splice(idx, 1);
-        available.push(letter);
-        renderLeft();
-        renderRight();
-        updateKPI();
-      }
-
-      // === Controls ===
-      shuffleBtn.addEventListener("click", () => {
-        available = randShuffle(available);
-        renderRight();
-        showToast("ಅಕ್ಷರಗಳನ್ನು ಮಿಶ್ರಿತ ಮಾಡಲಾಗಿದೆ");
-      });
-
-      hintBtn.addEventListener("click", () => {
-        const helpBox = document.getElementById("helpBox");
-        helpBox.open = !helpBox.open;
-        showToast(helpBox.open ? "ಸಲಹೆ ತೋರಿಸಲಾಗಿದೆ" : "ಸಲಹೆ ಮರೆಮಾಡಲಾಗಿದೆ");
-      });
-
-      checkBtn.addEventListener("click", () => {
-        let correct = 0;
-        placed.forEach((letter, idx) => {
-          if (letter === KANNADA[idx]) correct++;
-        });
-        const pct = Math.round((correct / KANNADA.length) * 100);
-        showToast(`ಪರಿಶೀಲನೆ: ${correct}/${KANNADA.length} (${pct}%)`);
-      });
-
-      resetBtn.addEventListener("click", () => {
-        available = [...KANNADA];
-        placed = [];
-        renderLeft();
-        renderRight();
-        updateKPI();
-        showToast("ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ");
-      });
-
-      showCorrectBtn.addEventListener("click", () => {
-        correctGrid.innerHTML = "";
-        KANNADA.forEach((letter) => {
-          const el = document.createElement("div");
-          el.className = "letter-pill";
-          el.textContent = letter;
-          correctGrid.appendChild(el);
-        });
-        modal.classList.add("open");
-      });
-
-      closeModal.addEventListener("click", () => {
-        modal.classList.remove("open");
-      });
-
-      // === Init ===
-      function init() {
-        available = [...KANNADA];
-        placed = [];
-        renderLeft();
-        renderRight();
-        updateKPI();
-      }
-      init();
     </script>
   </body>
 </html>
