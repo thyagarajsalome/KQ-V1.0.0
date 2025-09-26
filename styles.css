@@ -1,267 +1,360 @@
+/* --- CSS Variables for Easy Customization --- */
 :root {
-  --bg: #0b1020;
-  --surface: #12172b;
-  --surface-2: #1a2040;
-  --card: #0f1530;
-  --text: #e6ecff;
-  --muted: #8ea2c6;
-  --accent: #439fa6;
-  --accent-2: #226697;
-  --radius: 16px;
-  --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #f7f9fc;
-    --surface: #ffffff;
-    --surface-2: #f1f5fa;
-    --card: #fff;
-    --text: #0d1222;
-    --muted: #5d677a;
-    --accent: #2b6cf6;
-    --accent-2: #0bb88a;
-    --shadow: 0 8px 20px rgba(13, 18, 34, 0.1);
-  }
-}
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-body {
-  font-family: "Outfit", "Noto Serif Kannada", sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
-a {
-  text-decoration: none;
-  color: inherit;
+  --primary-color: #f7941e; /* Saffron/Orange accent */
+  --secondary-color: #ffc72c; /* Yellow accent inspired by Karnataka flag */
+  --dark-blue: #0a192f;
+  --light-blue: #1e3a5f;
+  --text-color: #ccd6f6;
+  --background-color: #0d1b2a;
+  --card-bg: #172a45;
+  --kannada-font: "Noto Serif Kannada", serif;
+  --english-font: "Outfit", sans-serif;
+  --shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+  --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-/* Navbar */
+/* --- Global & Reset Styles --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--english-font);
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--kannada-font);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+p {
+  font-family: var(--kannada-font);
+  font-size: 1.1rem;
+  color: #a8b2d1;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+section {
+  padding: 6rem 0;
+}
+
+/* --- Navbar --- */
 .navbar {
+  background-color: rgba(13, 27, 42, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
+
 .nav-container {
-  max-width: 1200px;
-  margin: auto;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
-}
-.logo {
-  font-size: 1.2rem;
-  font-weight: 800;
-  display: flex;
   align-items: center;
-  gap: 8px;
-  color: var(--accent);
 }
-.menu-toggle {
-  display: none;
-  font-size: 1.4rem;
-  cursor: pointer;
+
+.logo {
+  font-family: var(--kannada-font);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
 }
+
+.logo i {
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+}
+
 .nav-menu {
   list-style: none;
   display: flex;
-  gap: 16px;
+  gap: 1.5rem;
+  align-items: center;
 }
+
 .nav-link {
-  padding: 8px 12px;
-  border-radius: 8px;
-  transition: 0.2s;
+  font-family: var(--kannada-font);
+  font-size: 1rem;
+  color: var(--text-color);
 }
+
 .nav-link:hover {
-  background: var(--surface-2);
+  color: var(--primary-color);
 }
+
+.dropdown {
+  position: relative;
+}
+
 .dropdown-menu {
-  position: absolute;
-  background: var(--surface);
-  box-shadow: var(--shadow);
-  border-radius: 12px;
-  padding: 10px;
-  list-style: none;
   display: none;
-  margin-top: 6px;
-}
-.dropdown:hover .dropdown-menu {
-  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--card-bg);
+  list-style: none;
+  border-radius: 5px;
+  padding: 0.5rem 0;
+  box-shadow: var(--shadow);
+  min-width: 180px;
 }
 .dropdown-menu a {
   display: block;
-  padding: 8px 12px;
-  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-family: var(--kannada-font);
 }
-.dropdown-menu a:hover {
-  background: var(--surface-2);
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.dropdown .nav-link i {
+  font-size: 0.7rem;
+  margin-left: 5px;
+}
+
+/* --- Hero Section --- */
+.hero-highlight {
+  background: linear-gradient(
+    135deg,
+    var(--dark-blue),
+    var(--background-color)
+  );
+  text-align: center;
+  padding: 8rem 0;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  color: #fff;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  font-family: var(--kannada-font);
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background-color: rgba(247, 148, 30, 0.1);
+}
+
+.btn-hero {
+  font-size: 1.2rem;
+  padding: 1rem 2.5rem;
+}
+
+/* --- Quiz Categories --- */
+.quiz-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+.quiz-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.quiz-card {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.quiz-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px -15px rgba(2, 12, 27, 0.8);
+}
+
+.quiz-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-card p {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
+.special-card {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+}
+.special-card h3 {
+  color: var(--dark-blue);
+}
+.special-card p {
+  color: var(--light-blue);
+}
+.special-card .btn {
+  background-color: var(--dark-blue);
+  border-color: var(--dark-blue);
+  color: #fff;
+}
+.special-card .btn:hover {
+  background-color: var(--light-blue);
+}
+
+/* --- Info Section --- */
+.info-section {
+  background-color: var(--dark-blue);
+}
+.info-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+.info-columns {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+.info-box {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 280px;
+}
+.info-box h3 {
+  font-size: 1.5rem;
+}
+
+/* --- Footer --- */
+.footer {
+  background-color: var(--dark-blue);
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--light-blue);
+}
+.footer-links {
+  margin-bottom: 1rem;
+}
+.footer-links a {
+  margin: 0 1rem;
+  font-family: var(--kannada-font);
+}
+.copy {
+  color: #a8b2d1;
+  font-size: 0.9rem;
+}
+
+/* --- Mobile Menu & Responsive Design --- */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.menu-toggle .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
 }
 
 @media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
   .nav-menu {
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background: var(--surface);
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--dark-blue);
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem 0;
   }
   .nav-menu.active {
     display: flex;
   }
-}
+  .nav-menu li {
+    padding: 0.5rem 0;
+  }
+  .dropdown-menu {
+    position: static;
+    display: none; /* JS can be used for this or pure CSS */
+    background: none;
+    box-shadow: none;
+  }
+  .dropdown:hover .dropdown-menu {
+    display: none; /* Disable hover on mobile */
+  }
+  .dropdown.active .dropdown-menu {
+    display: block; /* For a JS-based accordion menu */
+  }
+  .menu-toggle {
+    display: block;
+  }
+  /* Hamburger to X animation */
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 
-/* Hero */
-.hero {
-  padding: 60px 20px;
-  text-align: center;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
-  color: #fff;
-  border-radius: 0 0 var(--radius) var(--radius);
-}
-.hero h1 {
-  font-size: 2rem;
-  margin-bottom: 12px;
-}
-.hero p {
-  max-width: 800px;
-  margin: auto;
-  font-size: 1.05rem;
-}
-
-/* Quiz section */
-.quiz-section {
-  padding: 40px 20px;
-}
-.quiz-categories {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: auto;
-}
-.quiz-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 20px;
-  text-align: center;
-  box-shadow: var(--shadow);
-  transition: 0.25s;
-}
-.quiz-card:hover {
-  transform: translateY(-4px);
-}
-.quiz-card h3 {
-  margin-bottom: 16px;
-}
-.btn {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #fff;
-  font-weight: 700;
-  padding: 10px 18px;
-  border-radius: 10px;
-  transition: 0.25s;
-}
-.btn:hover {
-  opacity: 0.9;
-}
-
-/* Info section */
-.info-section {
-  max-width: 900px;
-  margin: 60px auto;
-  padding: 20px;
-  background: var(--surface);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-.info-section h1,
-.info-section h2 {
-  margin: 20px 0 10px;
-  font-weight: 800;
-}
-.info-section p {
-  margin-bottom: 14px;
-  color: var(--muted);
-}
-
-/* Footer */
-.footer {
-  background: var(--surface-2);
-  padding: 30px 20px;
-  margin-top: 40px;
-}
-.footer-column ul {
-  list-style: none;
-  display: grid;
-  gap: 8px;
-}
-.footer-column a {
-  color: var(--text);
-  font-size: 0.95rem;
-}
-.copy {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-/* Hero Highlight Section */
-.hero-highlight {
-  background-color: var(--surface);
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.06) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 24px 24px;
-  padding: 80px 20px; /* ✅ fixed spacing */
-  margin: 40px auto; /* ✅ center + space from other sections */
-  border-radius: 16px; /* ✅ rounded section */
-  max-width: 1100px; /* ✅ keep it neat in large screens */
-  text-align: center; /* ✅ center content */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-}
-
-.hero-highlight h2 {
-  font-size: 2.4rem; /* slightly bigger */
-  font-weight: 800;
-  margin-bottom: 20px;
-  color: var(--accent);
-}
-
-.hero-highlight p {
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 0 auto 30px; /* ✅ balanced gap */
-  line-height: 1.7;
-  color: var(--muted);
-}
-
-.btn-hero {
-  display: inline-block;
-  background: var(--accent); /* ✅ fixed var() bug */
-  color: #fff;
-  font-weight: 700;
-  padding: 14px 32px; /* ✅ wider button */
-  border-radius: 40px;
-  font-size: 1.05rem;
-  transition: all 0.3s ease;
-}
-
-.btn-hero:hover {
-  background: var(--accent-2);
-  color: #000;
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
 }
