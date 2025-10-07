@@ -1,0 +1,22 @@
+{
+  "name": "Kannada Quiz - ಕನ್ನಡ ಕ್ವಿಜ್",
+  "short_name": "ಕನ್ನಡ ಕ್ವಿಜ್",
+  "description": "An interactive Kannada Quiz Platform with multiple categories.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f5f8f7",
+  "theme_color": "#019863",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
