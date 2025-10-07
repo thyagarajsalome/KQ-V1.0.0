@@ -3,159 +3,155 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ಕನ್ನಡ ಕ್ವಿಜ್ — Modern UI</title>
-    <meta
-      name="description"
-      content="Kannada Quiz Platform — Test your knowledge in Kannada across categories"
-    />
-    <meta
-      name="google-site-verification"
-      content="of_pRvg6YQBwtKsdlZhbUOEOOn24aY4eUfvzr0AtpRo"
-    />
-
-    <link rel="canonical" href="https://kannadaquiz.in/" />
-
+    <title>Kannada Quiz - ಕನ್ನಡ ಕ್ವಿಜ್</title>
+    <link rel="stylesheet" href="/KQ V1.0.0/styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Kannada:wght@400;700&family=Outfit:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap"
       rel="stylesheet"
     />
-
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-
-    <link rel="stylesheet" href="./styles.css" />
   </head>
-
   <body>
-    <nav class="navbar">
-      <div class="container nav-container">
-        <a href="#" class="logo"
-          ><i class="fa-solid fa-book-open"></i> ಕನ್ನಡ ಕ್ವಿಜ್</a
-        >
+    <div class="page-container">
+      <header class="main-header">
+        <h1 class="header-title">ಕನ್ನಡ ಕ್ವಿಜ್</h1>
         <div class="menu-toggle" id="mobile-menu">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
         </div>
-        <ul class="nav-menu" id="navMenu">
-          <li><a href="#home" class="nav-link">ಮುಖಪುಟ</a></li>
-          <li class="dropdown">
-            <a href="#" class="nav-link"
-              >ಕ್ವಿಜ್ ವಿಭಾಗಗಳು <i class="fa-solid fa-chevron-down"></i
-            ></a>
-            <ul class="dropdown-menu">
-              <li><a href="./general.html">ಸಾಮಾನ್ಯ</a></li>
-              <li><a href="./science.html">ವಿಜ್ಞಾನ</a></li>
-              <li><a href="./food.html">ಆಹಾರ</a></li>
-              <li><a href="./sports.html">ಕ್ರೀಡೆ</a></li>
-              <li><a href="./animalBirds.html">ಪ್ರಾಣಿ-ಪಕ್ಷಿ</a></li>
-              <li><a href="./historical.html">ಐತಿಹಾಸಿಕ</a></li>
-              <li><a href="./world.html">ದೇಶ-ವಿದೇಶ</a></li>
-            </ul>
-          </li>
-          <li><a href="#about" class="nav-link">ಕುರಿತು</a></li>
-          <li><a href="#faq" class="nav-link">FAQ</a></li>
-          <li><a href="#policy" class="nav-link">Policy</a></li>
-        </ul>
-      </div>
-    </nav>
+        <nav class="navbar" id="navbar">
+          <a href="index.html">ಮುಖಪುಟ</a>
+          <a href="about.html">ನಮ್ಮ ಬಗ್ಗೆ</a>
+          <a href="faq.html">FAQ</a>
+        </nav>
+      </header>
 
-    <main>
-      <section id="home" class="quiz-section">
-        <div class="container">
-          <h2>ಕ್ವಿಜ್ ಆಯ್ಕೆಮಾಡಿ</h2>
-          <div class="quiz-categories">
-            <div class="quiz-card">
+      <main class="main-content" id="home">
+        <h2 class="page-subtitle">ಕ್ವಿಜ್ ಆಯ್ಕೆಮಾಡಿ</h2>
+        <div class="category-grid">
+          <a href="quiz.html?category=general" class="category-card">
+            <img
+              src="https://placehold.co/400x200/019863/FFFFFF?text=ಸಾಮಾನ್ಯ+ಜ್ಞಾನ"
+              alt="ಸಾಮಾನ್ಯ ಜ್ಞಾನ"
+            />
+            <div class="card-content">
               <h3>ಸಾಮಾನ್ಯ ಜ್ಞಾನ</h3>
-              <p>ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ಎಲ್ಲ ವಿಷಯಗಳಲ್ಲಿ ಪರೀಕ್ಷಿಸಿ.</p>
-              <a href="./general.html" class="btn">ಆರಂಭಿಸಿ</a>
+              <p>ವಿವಿಧ ವಿಷಯಗಳ ಬಗ್ಗೆ ಜ್ಞಾನ ಪರೀಕ್ಷಿಸಿ.</p>
+              <span class="start-button">ಆರಂಭಿಸಿ</span>
             </div>
-            <div class="quiz-card">
+          </a>
+          <a href="quiz.html?category=science" class="category-card">
+            <img
+              src="https://placehold.co/400x200/2a9d8f/FFFFFF?text=ವಿಜ್ಞಾನ"
+              alt="ವಿಜ್ಞಾನ"
+            />
+            <div class="card-content">
               <h3>ವಿಜ್ಞಾನ</h3>
-              <p>ವಿಜ್ಞಾನದ ಅದ್ಭುತ ಜಗತ್ತನ್ನು ಅನ್ವೇಷಿಸಿ.</p>
-              <a href="./science.html" class="btn">ಆರಂಭಿಸಿ</a>
+              <p>ವಿಜ್ಞಾನದ ಮೂಲತತ್ವಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.</p>
+              <span class="start-button">ಆರಂಭಿಸಿ</span>
             </div>
-            <div class="quiz-card">
+          </a>
+          <a href="quiz.html?category=food" class="category-card">
+            <img
+              src="https://placehold.co/400x200/e9c46a/FFFFFF?text=ಆಹಾರ"
+              alt="ಆಹಾರ"
+            />
+            <div class="card-content">
               <h3>ಆಹಾರ</h3>
-              <p>ರುಚಿಕರವಾದ ಆಹಾರಗಳ ಬಗ್ಗೆ ನಿಮಗೆಷ್ಟು ಗೊತ್ತು?</p>
-              <a href="./food.html" class="btn">ಆರಂಭಿಸಿ</a>
+              <p>ರುಚಿಕರ ಆಹಾರಗಳ ಬಗ್ಗೆ ಜ್ಞಾನ ಪರೀಕ್ಷಿಸಿ.</p>
+              <span class="start-button">ಆರಂಭಿಸಿ</span>
             </div>
-            <div class="quiz-card">
+          </a>
+          <a href="quiz.html?category=sports" class="category-card">
+            <img
+              src="https://placehold.co/400x200/f4a261/FFFFFF?text=ಕ್ರೀಡೆ"
+              alt="ಕ್ರೀಡೆ"
+            />
+            <div class="card-content">
               <h3>ಕ್ರೀಡೆ</h3>
               <p>ಕ್ರೀಡಾ ಜಗತ್ತಿನ ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ಪರೀಕ್ಷಿಸಿ.</p>
-              <a href="./sports.html" class="btn">ಆರಂಭಿಸಿ</a>
+              <span class="start-button">ಆರಂಭಿಸಿ</span>
             </div>
-            <div class="quiz-card">
+          </a>
+          <a href="quiz.html?category=animalBirds" class="category-card">
+            <img
+              src="https://placehold.co/400x200/e76f51/FFFFFF?text=ಪ್ರಾಣಿ-ಪಕ್ಷಿ"
+              alt="ಪ್ರಾಣಿ-ಪಕ್ಷಿ"
+            />
+            <div class="card-content">
               <h3>ಪ್ರಾಣಿ-ಪಕ್ಷಿ</h3>
               <p>ಜೀವ ವೈವಿಧ್ಯದ ಬಗ್ಗೆ ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ.</p>
-              <a href="./animalBirds.html" class="btn">ಆರಂಭಿಸಿ</a>
+              <span class="start-button">ಆರಂಭಿಸಿ</span>
             </div>
-            <div class="quiz-card">
+          </a>
+          <a href="quiz.html?category=historical" class="category-card">
+            <img
+              src="https://placehold.co/400x200/d62828/FFFFFF?text=ಐತಿಹಾಸಿಕ"
+              alt="ಐತಿಹಾಸಿಕ"
+            />
+            <div class="card-content">
               <h3>ಐತಿಹಾಸಿಕ</h3>
               <p>ಇತಿಹಾಸದ ಪುಟಗಳನ್ನು ತಿರುವಿ ನೋಡಿ.</p>
-              <a href="./historical.html" class="btn">ಆರಂಭಿಸಿ</a>
+              <span class="start-button">ಆರಂಭಿಸಿ</span>
             </div>
-            <div class="quiz-card">
+          </a>
+          <a href="quiz.html?category=world" class="category-card">
+            <img
+              src="https://placehold.co/400x200/023e8a/FFFFFF?text=ದೇಶ-ವಿದೇಶ"
+              alt="ದೇಶ-ವಿದೇಶ"
+            />
+            <div class="card-content">
               <h3>ದೇಶ-ವಿದೇಶ</h3>
-              <p>ಪ್ರಪಂಚದಾದ್ಯಂತ ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ವಿಸ್ತರಿಸಿ.</p>
-              <a href="./world.html" class="btn">ಆರಂಭಿಸಿ</a>
+              <p>ಪ್ರಪಂಚದಾದ್ಯಂತ ಜ್ಞಾನವನ್ನು ವಿಸ್ತರಿಸಿ.</p>
+              <span class="start-button">ಆರಂಭಿಸಿ</span>
             </div>
-          </div>
+          </a>
         </div>
-      </section>
 
-      <section id="about" class="info-section">
-        <div class="container">
-          <h2>ಕನ್ನಡ ಕ್ವಿಜ್ ಬಗ್ಗೆ</h2>
-          <p>
-            ಕನ್ನಡ ಕ್ವಿಜ್ ಒಂದು ನವೀನ ಮತ್ತು ಶಿಕ್ಷಣಾತ್ಮಕ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್. ಇಲ್ಲಿ ವಿವಿಧ
-            ವಿಷಯಗಳಲ್ಲಿ ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ಪರೀಕ್ಷಿಸಲು ಅವಕಾಶ.
-          </p>
-          <div class="info-columns">
-            <div class="info-box">
-              <h3 id="faq">FAQ</h3>
+        <section class="how-to-use">
+          <h2 class="section-title">ಕ್ವಿಜ್ ಬಳಸುವುದು ಹೇಗೆ?</h2>
+          <div class="steps-container">
+            <div class="step">
+              <div class="step-icon">1</div>
+              <h3>ವರ್ಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ</h3>
+              <p>ನಿಮಗೆ ಆಸಕ್ತಿಯಿರುವ ವಿಷಯವನ್ನು ಮುಖಪುಟದಿಂದ ಆಯ್ಕೆಮಾಡಿ.</p>
+            </div>
+            <div class="step">
+              <div class="step-icon">2</div>
+              <h3>ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಿ</h3>
               <p>
-                <strong>ಈ ಕ್ವಿಜ್ ಉಚಿತವೇ?</strong><br />ಹೌದು, ನಮ್ಮ ವೇದಿಕೆಯಲ್ಲಿರುವ
-                ಎಲ್ಲಾ ಕ್ವಿಜ್‌ಗಳು ಎಲ್ಲರಿಗೂ ಸಂಪೂರ್ಣವಾಗಿ ಉಚಿತ.
+                ಪ್ರತಿ ಪ್ರಶ್ನೆಗೆ ಸಮಯದ ಮಿತಿ ಇರುತ್ತದೆ. ಸರಿಯಾದ ಉತ್ತರವನ್ನು ಆಯ್ಕೆಮಾಡಿ.
               </p>
             </div>
-            <div class="info-box">
-              <h3 id="policy">Policy</h3>
+            <div class="step">
+              <div class="step-icon">3</div>
+              <h3>ಫಲಿತಾಂಶ ಮತ್ತು ಬಹುಮಾನ</h3>
               <p>
-                <strong>ಗೌಪ್ಯತಾ ನೀತಿ</strong><br />ನಾವು ನಿಮ್ಮ ವೈಯಕ್ತಿಕ
-                ಮಾಹಿತಿಯನ್ನು ಗೌರವಿಸುತ್ತೇವೆ ಮತ್ತು ಯಾವುದೇ ಮೂರನೇ ವ್ಯಕ್ತಿಗೆ
-                ಹಂಚುವುದಿಲ್ಲ.
+                ಕ್ವಿಜ್ ಕೊನೆಯಲ್ಲಿ ನಿಮ್ಮ ಸ್ಕೋರ್ ನೋಡಿ ಮತ್ತು ನಾಣ್ಯಗಳನ್ನು ಗೆಲ್ಲಿರಿ!
               </p>
             </div>
           </div>
+        </section>
+      </main>
+
+      <footer class="main-footer-section">
+        <div class="footer-links-container">
+          <a href="about.html">ನಮ್ಮ ಬಗ್ಗೆ</a>
+          <a href="policy.html">ಗೌಪ್ಯತಾ ನೀತಿ</a>
+          <a href="faq.html">FAQ</a>
+          <a href="disclaimer.html">ಹಕ್ಕುತ್ಯಾಗ</a>
         </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-links">
-          <a href="#home">ಮುಖಪುಟ</a>
-          <a href="#about">ಕುರಿತು</a>
-          <a href="./general.html">ಸಾಮಾನ್ಯ</a>
-          <a href="./science.html">ವಿಜ್ಞಾನ</a>
-        </div>
-        <div class="copy">© 2025 ಕನ್ನಡ ಕ್ವಿಜ್. ಎಲ್ಲಾ ಹಕ್ಕುಗಳು ಮೀಸಲಾಗಿದೆ.</div>
-      </div>
-    </footer>
-
-    <script>
-      const mobileMenu = document.getElementById("mobile-menu");
-      const navMenu = document.getElementById("navMenu");
-
-      mobileMenu.addEventListener("click", () => {
-        mobileMenu.classList.toggle("active");
-        navMenu.classList.toggle("active");
-      });
-    </script>
+        <p class="footer-copy">
+          © 2025 ಕನ್ನಡ ಕ್ವಿಜ್. ಎಲ್ಲಾ ಹಕ್ಕುಗಳು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.
+        </p>
+      </footer>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>
