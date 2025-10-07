@@ -1,46 +1,49 @@
-// PWA Service Worker Registration & Install Button Logic
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/sw.js")
-      .then((registration) => {
-        console.log("Service Worker registered: ", registration);
-      })
-      .catch((registrationError) => {
-        console.log("Service Worker registration failed: ", registrationError);
-      });
-  });
-}
-
-let deferredPrompt;
-const installButton = document.getElementById("install-button");
-
-window.addEventListener("beforeinstallprompt", (e) => {
-  // Prevent the mini-infobar from appearing on mobile
-  e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-  // Update UI to notify the user they can install the PWA
-  if (installButton) {
-    installButton.style.display = "block";
-  }
-});
-
-if (installButton) {
-  installButton.addEventListener("click", async () => {
-    // Hide the install button
-    installButton.style.display = "none";
-    // Show the install prompt
-    deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
-    const { outcome } = await deferredPrompt.userChoice;
-    console.log(`User response to the install prompt: ${outcome}`);
-    // We've used the prompt, and can't use it again, throw it away
-    deferredPrompt = null;
-  });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
+  // PWA Service Worker Registration & Install Button Logic
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then((registration) => {
+          console.log("Service Worker registered: ", registration);
+        })
+        .catch((registrationError) => {
+          console.log(
+            "Service Worker registration failed: ",
+            registrationError
+          );
+        });
+    });
+  }
+
+  let deferredPrompt;
+  const installButton = document.getElementById("install-button");
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    // Prevent the mini-infobar from appearing on mobile
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    deferredPrompt = e;
+    // Update UI to notify the user they can install the PWA
+    if (installButton) {
+      installButton.style.display = "block";
+    }
+  });
+
+  if (installButton) {
+    installButton.addEventListener("click", async () => {
+      // Hide the install button
+      installButton.style.display = "none";
+      // Show the install prompt
+      deferredPrompt.prompt();
+      // Wait for the user to respond to the prompt
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User response to the install prompt: ${outcome}`);
+      // We've used the prompt, and can't use it again, throw it away
+      deferredPrompt = null;
+    });
+  }
+
   // --- QUESTION DATA ---
   const allQuestions = {
     general: {
@@ -650,7 +653,7 @@ document.addEventListener("DOMContentLoaded", () => {
           answer: "ರಷ್ಯಾ",
         },
         {
-          question: "ಮಾಚು ಪಿಚು ಯಾವ ದೇಶದಲ್ಲಿದೆ?",
+          question: "ಮಾಚु ಪಿಚು ಯಾವ ದೇಶದಲ್ಲಿದೆ?",
           options: ["ಬೊಲಿವಿಯಾ", "ಪೆರು", "ಚಿಲಿ", "ಅರ್ಜೆಂಟೀನಾ"],
           answer: "ಪೆರು",
         },
