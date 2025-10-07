@@ -548,3 +548,24 @@ body {
     justify-content: center;
   }
 }
+
+/* Custom Install Button Style */
+.install-btn {
+  display: block;
+  margin: 2rem auto;
+  padding: 1rem 1.5rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-kannada);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s;
+}
+
+.install-btn:hover {
+  transform: scale(1.05);
+}
