@@ -1,7 +1,0 @@
-# robots.txt for kannadaquiz.in
-
-User-agent: *
-Allow: /
-
-# Sitemap location
-Sitemap: https://kannadaquiz.in/sitemap.xml
